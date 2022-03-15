@@ -1,0 +1,114 @@
+desideri@lx1-fuxi021:~/Koulu/ot2022/ot_viikko1$ git log --stat | cat
+commit 4bcc5f92034722e8fc0ed536a8977f85edf4f19c
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 15:06:27 2022 +0200
+
+    poistettu file1, uudelleennimetty file2 -> file22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 5d21199f355ad321be8c5b8d7730fbdf0eed623d
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 15:01:58 2022 +0200
+
+    luotu hakemisto 'tiedostoja' ja filet 1-3
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 433e3adc7ddd7f6441a0971561d10565c6c2bdc2
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:55:53 2022 +0200
+
+    Mutettu ekaa ja kolmatta
+
+ eka.txt    | 3 +--
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+commit fdb6df00825f13f343ce3b16762225343bf303a5
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:49:46 2022 +0200
+
+    tiedosto.txt uudelleennimetty eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0155f089113ed9dbf948016330c5a6d52ef07046
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:48:34 2022 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 7935ce198b1a389152b883d9106f6fcb27cd049b
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:46:24 2022 +0200
+
+    poistettu ja lisäty tiedosto.txt tekstiä
+
+ tiedosto.txt | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+commit 25e0e8d3cf2463ee035de11e4e8f126b5e5dc60d
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:43:51 2022 +0200
+
+    Lisätty tiedosto.txt tekstiä
+
+ tiedosto.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit ee92ea16d65da38daae968f6fa2b8fdb0cd5028a
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:36:26 2022 +0200
+
+    Luotu kansio stuff ja sinne jokin tiedosto
+
+ stuff/jokin_tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 36788e0bb84bebbf275a819bf99719dafacbf9aa
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:34:35 2022 +0200
+
+    Huijasin äsken. Nyt myös muokattu 2 ja 3
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 3c95986af5f415dbf39b8fa54a518015fdaa0041
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:33:35 2022 +0200
+
+    Luotu kolmas tiedosto ja muokattu 2 ja 3
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2ea38324133ec3719f3c862a0a50dc57c4c9559e
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:22:12 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit d33480baf4047decb040cd8315f04ab1128923d3
+Author: desideri <mr.desipeli@gmail.com>
+Date:   Tue Mar 15 14:18:57 2022 +0200
+
+    luotu tekstitiedosto tiedosto.txt
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
