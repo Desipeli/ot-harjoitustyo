@@ -1,6 +1,6 @@
 # Ohjelma
 Tämä on **Ohjelman** *readme*. Lisää tietoa tulee myöhemmin.
-
+Paikallinen muutos
 ### Viikko 1
 [gitlog.txt](https://github.com/Desipeli/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
