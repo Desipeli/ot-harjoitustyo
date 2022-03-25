@@ -24,11 +24,10 @@ sequenceDiagram
 	Kioski->>Matkakortti: __init__("Kalle"), uusi_kortti
 	main->>Lataajalaite: lataa_arvoa(kallen_kortti, 3)
 	Lataajalaite->>Matkakortti: kasvata_arvoa(3)
-	Matkakortti: arvo+=3
 	main->>Lukijalaite: osta_lippu(kallen_kortti, 0)
-	Kortti->>Lukijalaite: arvo=3
+	Kortti->>Lukijalaite: 3
 	Lukijalaite->>Matkakortti: vahenna_arvoa(1.5)
-	Matkakortti: arvo-=1.5
+	Matkakortti: 1.5
 	main->>Lukijalaite: osta_lippu(kallen_kortti,2)
 	Kortti->>Lukijalaite: arvo=1.5, False
 
