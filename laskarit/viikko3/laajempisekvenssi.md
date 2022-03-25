@@ -16,7 +16,7 @@ sequenceDiagram
 	Lukijalaite->>HKLLaitehallinto: ratikka6
 	
 	
-
+	main->>Lukijalaite: hihuu testi
 	
 	
 
