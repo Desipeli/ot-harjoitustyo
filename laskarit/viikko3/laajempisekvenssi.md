@@ -29,9 +29,4 @@ sequenceDiagram
 	main->>Lukijalaite: osta_lippu(kallen_kortti,2)
 	Kortti->>Lukijalaite: arvo=1.5, False
 	
-	
-	
-	
-	
-	
 ```
