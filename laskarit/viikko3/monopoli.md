@@ -22,3 +22,24 @@ classDiagram
 	class Nopat{
 		pelaaja
 	}
+	
+	Aloitusruutu "1" --> "1" Ruutu
+	class Aloitusruutu{
+		ruutu
+	}
+	Vankila "1" --> "1" Ruutu
+	class Vankila{
+		ruutu
+	}
+	Sattumat_ja_yhteismaat "*" --> "*" Ruutu
+	class Sattumat_ja_yhteismaat{
+		ruutu
+	}
+	Asemat_ja_laitokset "*" --> "*" Ruutu
+	class Asemat_ja_laitokset{
+		ruutu
+	}
+	Normaalit_kadut "*" --> "*" Ruutu
+	class Normaalit_kadut{
+		ruutu
+	}
