@@ -14,7 +14,9 @@ sequenceDiagram
 	Lataajalaite->>HKLLaitehallinto: rautatientori
 	main->>HKLLaitehallinto: lisaa_lukija(ratikka6)
 	Lukijalaite->>HKLLaitehallinto: ratikka6
+	
 	main->>HKLLaitehallinto: lisaa_lukija(bussi244)
+	
 	Lukijalaite->>HKLLaitehallinto(bussi244)
 	main->>Kioski: lippu_luukku
 	main->>Kioski: osta_matkakortti("Kalle"), kallen_kortti
