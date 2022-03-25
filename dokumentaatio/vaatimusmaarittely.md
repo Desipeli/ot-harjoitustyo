@@ -6,7 +6,21 @@ Harjoitustyö on tietokonetta vastaan pelattava korttipeli kasino.
 
 ## Perusversion toiminnallisuus
 
-Peliä pelataan pääasiassa hiirellä graafisen käyttöliittymän avulla, joka koostuu ainakin päävalikosta, pelipöydästä sekä highscore-näkymästä. Pelin päätyttyä kysytään millä nimellä käyttäjä haluaa tallentaa voittonsa tietokantaan.
+- Peliä pelataan pääasiassa hiirellä 
+- Graafinen käyttöliittymä koostuu ainakin päävalikosta, pelipöydästä sekä highscore-näkymästä
+
+### päävalikko
+Napit
+- peliin
+- highscore-näkymään
+- 
+### Pelipöytä
+
+- pelaajalle, tietokoneelle ja pöydälle jaetaan kortteja pakasta
+- pelaaja ja tietokone voivat nostaa kortteja sääntöjen puitteissa pöydästä
+- pelaaja ja tietokone voivat pelata kortteja pöydälle
+- peli päättyy kun toisella on vähintään 16p ja kummallakaan ei ole käsikortteja
+- Pelin päätyttyä kysytään millä nimellä käyttäjä haluaa tallentaa voittonsa tietokantaan
 
 ## Jos aikaa riittää
 
