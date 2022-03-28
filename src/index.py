@@ -1,21 +1,79 @@
 import pygame
+import sys
+from button import Button
 
-def main():
-    pygame.init()
-    screen = pygame.display.set_mode([640,400])
 
-    running = True
-    while running:
-        # Events
+
+
+
+class Game:
+
+    def __init__(self):
+
+        # 0 = menu, 1 = game table, 2 =enter highscore, 3 = show highscore
+        self.game_stage = 0
+        pygame.init()
+        self.screen = pygame.display.set_mode([800,600])
+        self.font = pygame.font.SysFont("Corbel", 35)
+
+        # buttonlists
+        b1 = Button(self.screen, "Play", (100,60), (self.screen.get_width()/2,self.screen.get_height()/2))
+        b2 = Button(self.screen, "Highscores", (150,60), (self.screen.get_width()/2,self.screen.get_height()/2+100))
+        b3 = Button(self.screen, "Exit", (100,60), (50,self.screen.get_height()- 30))
+        self.menu_buttons = [b1, b2, b3]
+        
+
+
+        self.clock = pygame.time.Clock()
+        self.start_game()
+
+    def start_game(self):
+
+        while True:
+            # Events
+            self.events()
+            # Screen background color green (0, 81, 44)
+            self.screen.fill((0, 81, 44))
+
+
+            # Menu
+            if self.game_stage == 0:
+                for b in self.menu_buttons:
+                    b.draw()
+
+
+            # Game stage testing
+            text_game_stage = self.font.render(f"Game stage: {self.game_stage}", True, (0,0,0))
+            self.screen.blit(text_game_stage, (10,10))
+
+            pygame.display.flip()
+            self.clock.tick(60)
+
+    def events(self):
         for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                self.mouse_click(event)
             if event.type == pygame.QUIT:
-                running = False
-        # Screen background color green (0, 81, 44)
-        screen.fill((0, 81, 44))
+                pygame.quit()
+                sys.exit()
 
-        pygame.display.flip()
 
-    pygame.quit()
+    def mouse_click(self, event):
+        if self.game_stage == 0:
+            # Play
+            if event.pos[0] >= self.menu_buttons[0].center[0] and event.pos[0] <= self.menu_buttons[0].center[0]+self.menu_buttons[0].size[0]:
+                if event.pos[1] >= self.menu_buttons[0].center[1] and event.pos[1] <= self.menu_buttons[0].center[1]+self.menu_buttons[0].size[1]:
+                    self.game_stage = 1
+            # Highscore
+            if event.pos[0] >= self.menu_buttons[1].center[0] and event.pos[0] <= self.menu_buttons[1].center[0]+self.menu_buttons[1].size[0]:
+                if event.pos[1] >= self.menu_buttons[1].center[1] and event.pos[1] <= self.menu_buttons[1].center[1]+self.menu_buttons[1].size[1]:
+                    self.game_stage = 3        
+            # Exit
+            if event.pos[0] >= self.menu_buttons[2].center[0] and event.pos[0] <= self.menu_buttons[2].center[0]+self.menu_buttons[2].size[0]:
+                if event.pos[1] >= self.menu_buttons[2].center[1] and event.pos[1] <= self.menu_buttons[2].center[1]+self.menu_buttons[2].size[1]:
+                    pygame.quit() 
+                    sys.exit()
+
 
 if __name__ == "__main__":
-    main()
+    Game()
