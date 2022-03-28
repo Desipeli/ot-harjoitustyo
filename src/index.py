@@ -1,6 +1,8 @@
 import pygame
 import sys
 from button import Button
+from card import Card
+from load_images import load_cards
 
 
 
@@ -13,7 +15,7 @@ class Game:
         # 0 = menu, 1 = game table, 2 =enter highscore, 3 = show highscore
         self.game_stage = 0
         pygame.init()
-        self.screen = pygame.display.set_mode([800,600])
+        self.screen = pygame.display.set_mode([1366,768])
         self.font = pygame.font.SysFont("Corbel", 35)
 
         # buttonlists
@@ -23,8 +25,11 @@ class Game:
         self.menu_buttons = [b1, b2, b3]
         
 
-
         self.clock = pygame.time.Clock()
+
+        # Lataustestit
+        self.cards = load_cards()
+
         self.start_game()
 
     def start_game(self):
@@ -46,6 +51,8 @@ class Game:
             text_game_stage = self.font.render(f"Game stage: {self.game_stage}", True, (0,0,0))
             self.screen.blit(text_game_stage, (10,10))
 
+            # cardtest
+            self.screen.blit(self.cards[0].image, (200,200))
             pygame.display.flip()
             self.clock.tick(60)
 
