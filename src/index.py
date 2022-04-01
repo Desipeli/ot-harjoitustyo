@@ -31,12 +31,11 @@ class Game:
         # Load images
         self.cards = load_cards()
         self.backs = load_backs()
-        self.info.deck = Deck(self.cards.copy())
 
         self.info.cards = self.cards
         self.info.backs = self.backs
         self.info.menu_buttons = self.menu_buttons
-        #self.info.deck_pos = (0, self.screen.get_height()/2-self.backs[0].image.get_height()/2)
+
         self.loop = Loop(self.info)
 
 
