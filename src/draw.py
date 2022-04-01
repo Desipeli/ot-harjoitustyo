@@ -1,5 +1,7 @@
-import imp
+
 import pygame
+
+from deck import Deck
 
 class Draw:
     def __init__(self, info):
@@ -10,7 +12,14 @@ class Draw:
             for b in self.info.menu_buttons:
                 b.draw()
         
+        if self.info.game_stage == 1:
+            self.draw_deck()
+        
 
+    def draw_deck(self):
+        #for i in range(len(self.info.deck.see_full_deck())):
+            #self.info.screen.blit(self.info.backs[0].image, (30, self.info.screen.get_height()/2 - self.info.backs[0].image.get_height()/2))
+        self.info.screen.blit(self.info.backs[0].image, self.info.deck_pos)
 
         #Draw all cards test
         #if self.info.game_stage == 1:

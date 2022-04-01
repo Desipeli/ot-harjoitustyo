@@ -3,6 +3,7 @@ import sys
 from button import Button
 from card import Card
 from draw import Draw
+from deck import Deck
 from load_backs import load_backs
 from load_cards import load_cards
 from event_handler import Events
@@ -27,16 +28,15 @@ class Game:
         self.menu_buttons = [b1, b2, b3]
         
         self.info = info.Info(self.screen, self.font)
-
-
         # Load images
         self.cards = load_cards()
         self.backs = load_backs()
+        self.info.deck = Deck(self.cards.copy())
 
         self.info.cards = self.cards
         self.info.backs = self.backs
         self.info.menu_buttons = self.menu_buttons
-
+        #self.info.deck_pos = (0, self.screen.get_height()/2-self.backs[0].image.get_height()/2)
         self.loop = Loop(self.info)
 
 

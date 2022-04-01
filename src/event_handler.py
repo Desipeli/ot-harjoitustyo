@@ -7,14 +7,13 @@ class Events:
         self.info = info
         self.event = event
         if self.event.type == pygame.MOUSEBUTTONDOWN:
-            self.check_buttons()
-            pass
+            self.check_clicks()
         if self.event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
     
-    def check_buttons(self):
+    def check_clicks(self):
         # Menu
         if self.info.game_stage == 0:
             for b in self.info.menu_buttons:
@@ -24,6 +23,10 @@ class Events:
                         print("play")
                         self.info.game_stage = 1
                         pass
+        
+        # Game tabel
+        if self.info.game_stage == 1:
+            pass
 
     def check_button(self, button):
         if self.event.pos[0] >= button.center[0] and self.event.pos[0] <= button.center[0]+button.size[0]:
