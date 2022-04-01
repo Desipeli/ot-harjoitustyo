@@ -4,7 +4,7 @@ from button import Button
 from card import Card
 from load_backs import load_backs
 from load_cards import load_cards
-
+from event_handler import check_event
 
 
 
@@ -31,8 +31,6 @@ class Game:
         # Lataustestit
         self.cards = load_cards()
         self.backs = load_backs()
-        for b in self.backs:
-            print(b.v_hand, b.suit)
 
         self.start_game()
 
@@ -49,7 +47,10 @@ class Game:
             if self.game_stage == 0:
                 for b in self.menu_buttons:
                     b.draw()
-
+            # Game table
+            if self.game_stage == 1:
+                pass
+            
 
             # Game stage testing
             text_game_stage = self.font.render(f"Game stage: {self.game_stage}", True, (0,0,0))
@@ -58,17 +59,15 @@ class Game:
             # cardtest
             #self.screen.blit(self.cards[0].image, (200,200))
             #self.screen.blit(self.backs[0].image, (200,400))
-            
+
             pygame.display.flip()
             self.clock.tick(60)
 
     def events(self):
         for event in pygame.event.get():
+            check_event(event)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 self.mouse_click(event)
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
 
 
     def mouse_click(self, event):
