@@ -23,7 +23,8 @@ class Deck:
         return self.__full_deck.copy()
     
     def pick_top(self):
-        return self.__cards.pop()
+        if len(self.__cards) > 0:
+            return self.__cards.pop()
     
     def get_back(self):
         return self.__back
