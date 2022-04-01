@@ -2,8 +2,7 @@ import os
 from card import Card
 import pygame
 
-def load_cards():
-    path = "images/cards/"
+def load_cards(path = "images/cards/"):
     cards = []
     scale = (103,150)
     for file in os.listdir(path):
