@@ -1,4 +1,5 @@
 from card import Card
+import random
 
 class Deck:
 
@@ -7,9 +8,11 @@ class Deck:
         self.__cards = []
         self.__back = back
         self.assemble_deck()
+        random.shuffle(self.__cards)
         
 
     def assemble_deck(self):
+        self.__cards = []
         for card in self.__full_deck:
             self.__cards.append(card)
         
@@ -25,3 +28,5 @@ class Deck:
     def get_back(self):
         return self.__back
 
+    def shuffle(self):
+        random.shuffle(self.__cards)
