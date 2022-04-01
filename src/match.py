@@ -1,10 +1,12 @@
 import pygame
 
+
 class Match:
-    def __inti__(self, info, deck):
+    def __init__(self, info):
+        self.info = info
         self.player_hand = []
         self.computer_hand = []
-        self.deck = deck
+        self.deck = None
         self.table = []
         self.turn = True # t = player, f = computer
         self.round = 1
