@@ -2,9 +2,10 @@ from card import Card
 
 class Deck:
 
-    def __init__(self, cards):
+    def __init__(self, cards, back):
         self.__full_deck = cards
         self.__cards = []
+        self.__back = back
         self.assemble_deck()
         
 
@@ -20,4 +21,7 @@ class Deck:
     
     def pick_top(self):
         return self.__cards.pop()
+    
+    def get_back(self):
+        return self.__back
 
