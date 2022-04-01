@@ -2,7 +2,8 @@ import pygame
 import sys
 from button import Button
 from card import Card
-from load_images import load_cards
+from load_backs import load_backs
+from load_cards import load_cards
 
 
 
@@ -29,6 +30,9 @@ class Game:
 
         # Lataustestit
         self.cards = load_cards()
+        self.backs = load_backs()
+        for b in self.backs:
+            print(b.v_hand, b.suit)
 
         self.start_game()
 
@@ -52,7 +56,9 @@ class Game:
             self.screen.blit(text_game_stage, (10,10))
 
             # cardtest
-            self.screen.blit(self.cards[0].image, (200,200))
+            #self.screen.blit(self.cards[0].image, (200,200))
+            #self.screen.blit(self.backs[0].image, (200,400))
+            
             pygame.display.flip()
             self.clock.tick(60)
 
