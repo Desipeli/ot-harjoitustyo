@@ -41,6 +41,7 @@ class Events:
                 card = deck.pick_top()
                 if card:
                     print(card.v_hand, card.suit)
+                    self.info.match.player_hand.append(card)
 
     def start_match(self):
         print("Match started!")
