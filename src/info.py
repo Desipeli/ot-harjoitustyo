@@ -9,7 +9,8 @@ class Info:
         self.cards = []
         self.backs = []
         self.menu_buttons = []
-        self.deck = None
+        #self.deck = None
         self.deck_pos = (0,0)
+        self.match = None
 
         
