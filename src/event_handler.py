@@ -33,10 +33,13 @@ class Events:
                 return True
         return False
 
+    # This is for test purpose only
     def check_click_deck(self):
         if self.event.pos[0] >= self.info.deck_pos[0] and self.event.pos[0] <= self.info.deck_pos[0] + self.info.match.deck.get_back().image.get_width():
             if self.event.pos[1] >= self.info.deck_pos[1] and self.event.pos[1] <= self.info.deck_pos[1] + self.info.match.deck.get_back().image.get_height():
-                print("Deck!")
+                deck = self.info.match.deck
+                card = deck.pick_top()
+                print(card.v_hand, card.suit)
 
     def start_match(self):
         print("Match started!")
