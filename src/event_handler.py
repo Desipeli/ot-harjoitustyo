@@ -38,7 +38,6 @@ class Events:
                         self.info.match.move_selected_cards_to_player()
                     else:
                         self.info.match.play_card_to_table()
-                self.info.match.change_turn()
 
     def check_click_table(self):
         match = self.info.match
