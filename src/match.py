@@ -1,9 +1,10 @@
 import pygame
-
+from cpl import Cpl
 
 class Match:
     def __init__(self, info):
         self.info = info
+        self.cpl = Cpl(info)
         self.player_hand = []
         self.computer_hand = []
         self.player_collected_cards = []
@@ -57,16 +58,31 @@ class Match:
         for c in self.player_chosen_table_cards:
             self.table.remove(c)
         self.player_chosen_table_cards = []
+        self.change_turn()
         return True
     
     def play_card_to_table(self):
         self.table.append(self.player_chosen_hand_card)
         self.player_hand.remove(self.player_chosen_hand_card)
         self.player_chosen_hand_card = None
+        self.change_turn()
     
     def change_turn(self):
         if self.turn:
             self.turn = False
+            self.cpl.check_turn()
         else:
             self.turn = True
 
+    def computer_card_to_table(self, card):
+        self.table.append(card)
+        self.computer_hand.remove(card)
+        print("computer played", card.v_hand, card.suit, " to table")
+
+    def move_selected_cards_to_computer(self, cc, tc):
+        self.computer_collected_cards.append(cc)
+        self.computer_hand.remove(cc)
+        print("Computer took", tc[0].v_table, tc[0].suit, "with", cc.v_hand, cc.suit)
+        for card in tc:
+            self.computer_collected_cards.append(card)
+            self.table.remove(card)
