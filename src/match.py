@@ -39,7 +39,7 @@ class Match:
         target.append(self.deck.pick_top())
     
     def check_if_player_can_pick_cards(self):
-        if self.player_chosen_hand_card and len(self.player_chosen_table_cards) > 0: #Player has chosen cards from hand & table
+        if len(self.player_chosen_table_cards) > 0: #Player has chosen cards from table
             for c in self.player_chosen_table_cards:
                 if c.v_table > self.player_chosen_hand_card.v_hand:
                     return False
@@ -48,6 +48,8 @@ class Match:
         return False
     
     def player_action_button(self):
+        if self.player_chosen_hand_card == None:
+            return
         if self.check_if_player_can_pick_cards():
             self.move_selected_cards_to_player()
         else:
@@ -59,13 +61,13 @@ class Match:
     def move_selected_cards_to_player(self):
         # hand
         self.player_collected_cards.append(self.player_chosen_hand_card)
+        self.add_points_to("player", self.player_chosen_hand_card)
         self.player_hand.remove(self.player_chosen_hand_card)
         self.player_chosen_hand_card = None
         # table
-        printhelp = [(x.v_table, x.suit) for x in self.player_chosen_table_cards]
-        print("chosen table cards", printhelp)
         for c in self.player_chosen_table_cards:
             self.table.remove(c)
+            self.add_points_to("player", c)
             self.player_collected_cards.append(c)
         self.player_chosen_table_cards = []
     
@@ -75,6 +77,10 @@ class Match:
         self.player_chosen_hand_card = None
     
     def change_turn(self):
+        print(len(self.player_hand), len(self.computer_hand), len(self.deck.see_deck()))
+        if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0:
+            print("deallll")
+            self.deal_cards(False)
         if self.turn:
             self.turn = False
             self.cpl.check_turn()
@@ -88,12 +94,25 @@ class Match:
 
     def move_selected_cards_to_computer(self, cc, tc):
         self.computer_collected_cards.append(cc)
+        self.add_points_to("computer", cc)
         self.computer_hand.remove(cc)
         print("Computer took", tc[0].v_table, tc[0].suit, "with", cc.v_hand, cc.suit)
         for card in tc:
             self.computer_collected_cards.append(card)
+            self.add_points_to("computer", card)
             self.table.remove(card)
 
     def print_hands(self):
         print("player col:",[(c.v_hand, c.suit) for c in self.player_collected_cards])
         print("computer col:",[(c.v_hand, c.suit) for c in self.computer_collected_cards])
+
+    def add_points_to(self, who, card):
+        points = 0
+        if card.v_hand == 14 or card.v_hand == 15:
+            points += 1
+        elif card.v_hand == 16:
+            points += 2
+        if who == "player":
+            self.points_player += points
+        else:
+            self.points_computer += points
