@@ -16,6 +16,7 @@ class Draw:
 
         # draw deck only if cards left
         if self.info.game_stage == 1:
+            self.draw_game_buttons()
             if len(self.info.match.deck.see_deck()) > 0:
                 self.draw_deck()
             if len(self.info.match.player_hand) > 0:
@@ -61,5 +62,12 @@ class Draw:
 
     def draw_deck(self):
         self.info.screen.blit(self.info.match.deck.get_back().image, self.info.deck_pos)
+    
+    def draw_game_buttons(self):
+        for button in self.info.game_buttons:
+            if button.id == 3: # Play card to table / pick cards
+                cw = self.info.match.deck.get_back().image.get_width()
+                button.pos = (self.info.screen.get_width()/2 - (len(self.info.match.player_hand) * cw / 2) - cw, button.pos[1])
+            button.draw()
 
 
