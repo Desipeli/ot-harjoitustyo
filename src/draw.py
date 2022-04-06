@@ -32,6 +32,7 @@ class Draw:
             x = (self.info.screen.get_width()-len(self.info.match.table)*card_width)/2 + i*card_width
             y = self.info.screen.get_height()/2 - self.info.match.deck.get_back().image.get_height()/2
             self.draw_card(c, (x,y))
+            c.pos = (x,y)
             i += 1
 
     def draw_hand(self, hand):
@@ -48,6 +49,7 @@ class Draw:
                 y = 0
             pos = (x, y)
             self.draw_card(c, pos)
+            c.pos = pos
             i += 1       
 
     def draw_card(self, card, pos):
