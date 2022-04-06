@@ -21,11 +21,13 @@ class Match:
             if self.round % 2 == 1: # Start by dealing player first
                 self.deal_two_cards_to(self.player_hand)
                 self.deal_two_cards_to(self.computer_hand)
-                self.deal_two_cards_to(self.table)
+                if start_of_round:
+                    self.deal_two_cards_to(self.table)
             else:
                 self.deal_two_cards_to(self.computer_hand)
-                self.deal_two_cards_to(self.player_hand)               
-                self.deal_two_cards_to(self.table)
+                self.deal_two_cards_to(self.player_hand)
+                if start_of_round:               
+                    self.deal_two_cards_to(self.table)
     
     def deal_two_cards_to(self, target):
         target.append(self.deck.pick_top())
