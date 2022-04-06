@@ -41,9 +41,7 @@ class Draw:
     def draw_hand(self, hand):
         i = 0
         for c in hand:
-            card_width = self.info.match.deck.get_back().image.get_width()
-
-            
+            card_width = self.info.match.deck.get_back().image.get_width()          
             if hand == self.info.match.player_hand:
                 x = (self.info.screen.get_width()-len(self.info.match.player_hand)*card_width)/2 + i*card_width
                 y = self.info.screen.get_height()-self.info.match.deck.get_back().image.get_height()
@@ -66,20 +64,12 @@ class Draw:
     def draw_game_buttons(self):
         m = self.info.match
         for button in self.info.game_buttons:
-            if button.id == 3: # Play card to table / pick cards
+            if button.id == 3:
                 cw = self.info.match.deck.get_back().image.get_width()
                 button.pos = (self.info.screen.get_width()/2 - (len(self.info.match.player_hand) * cw / 2) - cw, button.pos[1])
-                if m.player_chosen_hand_card and len(m.player_chosen_table_cards) > 0:
-                    for i in m.player_chosen_table_cards:
-                        if i.v_table <= m.player_chosen_hand_card.v_hand:
-                            if sum([x.v_table for x in m.player_chosen_table_cards]) % m.player_chosen_hand_card.v_hand == 0:
-                                button.text = "pick cards"
-                            else:
-                                button.text = "ei jaollinen"
-                        else:
-                            button.text = "liian isoja"
+                if m.check_if_player_can_pick_cards():
+                    button.text = "pick cards"
                 else:
-                    button.text = "ei valittuna"
+                    button.text = "play to table"
             button.draw()
-
 

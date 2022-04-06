@@ -34,3 +34,14 @@ class Match:
     def deal_two_cards_to(self, target):
         target.append(self.deck.pick_top())
         target.append(self.deck.pick_top())
+    
+    def check_if_player_can_pick_cards(self):
+        if self.player_chosen_hand_card and len(self.player_chosen_table_cards) > 0: #Player has chosen cards from hand & table
+            for c in self.player_chosen_table_cards:
+                if c.v_table > self.player_chosen_hand_card.v_hand:
+                    return False
+            if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0:
+                return True
+        return False
+    
+
