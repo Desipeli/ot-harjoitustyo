@@ -29,15 +29,32 @@ class Cpl:
         else:
             print("hand and table")
             #Check table cards for combinations
-            self.calculate_combinations()
+            self.just_some_card()
             m.change_turn()
 
 
     def choose_which_card_to_table(self):
-        card = self.info.match.computer_hand[0] # first for now
-        self.info.match.computer_card_to_table(card)
+        #card = self.info.match.computer_hand[0] # first for now
+        #self.info.match.computer_card_to_table(card)
+        m = self.info.match
+        weakest_card = m.computer_hand[0]
+        for card in m.computer_hand:
+            print("weakest card:", weakest_card.v_hand, weakest_card.suit, self.card_value(weakest_card), "card", card.v_hand, card.suit, self.card_value(card))
+            if self.card_value(card) < self.card_value(weakest_card):
+                weakest_card = card
+        self.info.match.computer_card_to_table(weakest_card)
+
+    def card_value(self, card):
+        value = 0
+        if card.v_hand == 14 or card.v_hand == 15:
+            value += 1
+        elif card.v_hand == 16:
+            value += 1
+        if card.suit == "spades": # should test if it's still profitable to gather spades
+            value += 0.2
+        return value
     
-    def calculate_combinations(self):
+    def just_some_card(self):
         # For now check if any card matches hand
         m = self.info.match
         found_card = False
