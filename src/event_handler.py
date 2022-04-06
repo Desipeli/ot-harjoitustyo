@@ -55,4 +55,5 @@ class Events:
         match.deck = Deck(self.info.cards.copy(), self.info.backs[0])
         self.info.match = match
         self.info.game_stage = 1
+        match.start_round()
         
