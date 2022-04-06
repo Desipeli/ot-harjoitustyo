@@ -64,10 +64,22 @@ class Draw:
         self.info.screen.blit(self.info.match.deck.get_back().image, self.info.deck_pos)
     
     def draw_game_buttons(self):
+        m = self.info.match
         for button in self.info.game_buttons:
             if button.id == 3: # Play card to table / pick cards
                 cw = self.info.match.deck.get_back().image.get_width()
                 button.pos = (self.info.screen.get_width()/2 - (len(self.info.match.player_hand) * cw / 2) - cw, button.pos[1])
+                if m.player_chosen_hand_card and len(m.player_chosen_table_cards) > 0:
+                    for i in m.player_chosen_table_cards:
+                        if i.v_table <= m.player_chosen_hand_card.v_hand:
+                            if sum([x.v_table for x in m.player_chosen_table_cards]) % m.player_chosen_hand_card.v_hand == 0:
+                                button.text = "pick cards"
+                            else:
+                                button.text = "ei jaollinen"
+                        else:
+                            button.text = "liian isoja"
+                else:
+                    button.text = "ei valittuna"
             button.draw()
 
 
