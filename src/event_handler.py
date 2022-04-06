@@ -27,7 +27,20 @@ class Events:
             if self.event.button == 1:
                 self.check_click_deck()
                 self.check_click_player_hand()
+                self.check_click_table()
 
+
+
+    def check_click_table(self):
+        match = self.info.match
+        for card in match.table:
+            if self.check_click_surface(card):
+                print("pöytä", [x.v_table for x in match.table])
+                print("Pöytä valittu",card.v_table, [x.v_table for x in match.player_chosen_table_cards])
+                if card not in match.player_chosen_table_cards:
+                    match.player_chosen_table_cards.append(card)
+                else:
+                    match.player_chosen_table_cards.remove(card)
 
     def check_click_player_hand(self):
         match = self.info.match
