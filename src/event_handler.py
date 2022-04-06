@@ -21,8 +21,7 @@ class Events:
             for b in self.info.menu_buttons:
                 if self.check_button(b):
                     if b.text == "Play":
-                        self.start_match()
-        
+                        self.start_match()        
         # Game tabel
         elif self.info.game_stage == 1:
             if self.event.button == 1:
@@ -35,9 +34,10 @@ class Events:
         for card in match.player_hand:
             if self.check_click_surface(card): # Player chose a card in hand
                 print(card.v_hand)
+                match.player_chosen_hand_card = card
             
     
-    def check_click_surface(self, s):
+    def check_click_surface(self, s): # This can be used to check if player clicked a card
             p = self.event.pos
             if p[0] >= s.pos[0] and p[0] <= s.pos[0] + s.image.get_width():
                 if p[1] >= s.pos[1] and p[1] <= s.pos[1] + s.image.get_height():
