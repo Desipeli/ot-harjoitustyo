@@ -17,7 +17,7 @@ class Events:
     
     def check_clicks(self):
         # Menu
-        if self.info.game_stage == 0:
+        if self.info.game_stage == 0 and self.event.button == 1:
             for b in self.info.menu_buttons:
                 if self.check_button(b):
                     if b.text == "Play":
@@ -25,7 +25,9 @@ class Events:
         
         # Game tabel
         elif self.info.game_stage == 1:
-            self.check_click_deck()
+            if self.event.button == 1:
+                self.check_click_deck()
+
 
     def check_button(self, button):
         if self.event.pos[0] >= button.center[0] and self.event.pos[0] <= button.center[0]+button.size[0]:
