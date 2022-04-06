@@ -19,6 +19,7 @@ class Button:
         self.__draw_text()
 
     def __draw_text(self):
+        self.t = self.font.render(self.text, True, self.text_color)
         self.screen.blit(self.t, self.text_position)
     
     def __set_center(self):
