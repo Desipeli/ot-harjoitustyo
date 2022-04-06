@@ -17,6 +17,7 @@ class Draw:
         # draw deck only if cards left
         if self.info.game_stage == 1:
             self.draw_game_buttons()
+            self.draw_points()
             if len(self.info.match.deck.see_deck()) > 0:
                 self.draw_deck()
             if len(self.info.match.player_hand) > 0:
@@ -25,6 +26,15 @@ class Draw:
                 self.draw_hand(self.info.match.computer_hand)
             if len(self.info.match.table) > 0:
                 self.draw_table()
+    
+    def draw_points(self):
+        font = self.info.font
+        p = self.info.match.points_player
+        c = self.info.match.points_computer
+        tp = font.render(f"player: {p}", True, (200,200,200))
+        tc = font.render(f"computer: {c}", True, (200,200,200))
+        self.info.screen.blit(tp, (1100, 100))
+        self.info.screen.blit(tc, (1100, 200))
 
     def draw_table(self):
         i = 0

@@ -48,9 +48,11 @@ class Match:
         return False
     
     def player_action_button(self):
-        if self.check_if_player_can_pick_cards(): # works
+        if self.check_if_player_can_pick_cards():
             self.move_selected_cards_to_player()
         else:
+            if len(self.player_chosen_table_cards) > 0:
+                return
             self.play_card_to_table()
         self.change_turn()
     
