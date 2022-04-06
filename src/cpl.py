@@ -46,12 +46,15 @@ class Cpl:
 
     def card_value(self, card):
         value = 0
+        spades = 0
         if card.v_hand == 14 or card.v_hand == 15:
             value += 1
         elif card.v_hand == 16:
             value += 1
-        if card.suit == "spades": # should test if it's still profitable to gather spades
-            value += 0.2
+        if card.suit == "spades":
+            if len([x for x in self.info.match.player_collected_cards if x.suit == "spades"]) < 7: # check if player has < half of spades
+                print("player spades:",len([x for x in self.info.match.player_collected_cards if x.suit == "spades"]))
+                value += 0.2
         return value
     
     def just_some_card(self):
