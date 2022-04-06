@@ -44,6 +44,8 @@ class Draw:
             if hand == self.info.match.player_hand:
                 x = (self.info.screen.get_width()-len(self.info.match.player_hand)*card_width)/2 + i*card_width
                 y = self.info.screen.get_height()-self.info.match.deck.get_back().image.get_height()
+                if c == self.info.match.player_chosen_hand_card:    # Change y for chosen card
+                    y -= self.info.match.player_chosen_hand_card.image.get_height()/3
             else:
                 x = (self.info.screen.get_width()-len(self.info.match.computer_hand)*card_width)/2 + i*card_width
                 y = 0
