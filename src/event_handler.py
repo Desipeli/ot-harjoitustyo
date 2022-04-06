@@ -24,7 +24,7 @@ class Events:
                         self.start_match()        
         # Game tabel
         elif self.info.game_stage == 1:
-            if self.event.button == 1:
+            if self.event.button == 1 and self.info.match.turn:
                 self.check_click_deck()
                 self.check_click_player_hand()
                 self.check_click_table()
@@ -38,6 +38,7 @@ class Events:
                         self.info.match.move_selected_cards_to_player()
                     else:
                         self.info.match.play_card_to_table()
+                self.info.match.change_turn()
 
     def check_click_table(self):
         match = self.info.match

@@ -64,4 +64,9 @@ class Match:
         self.player_hand.remove(self.player_chosen_hand_card)
         self.player_chosen_hand_card = None
     
+    def change_turn(self):
+        if self.turn:
+            self.turn = False
+        else:
+            self.turn = True
 
