@@ -47,6 +47,13 @@ class Match:
                 return True
         return False
     
+    def player_action_button(self):
+        if self.check_if_player_can_pick_cards(): # works
+            self.move_selected_cards_to_player()
+        else:
+            self.play_card_to_table()
+        self.change_turn()
+    
     def move_selected_cards_to_player(self):
         # hand
         self.player_collected_cards.append(self.player_chosen_hand_card)
@@ -54,18 +61,16 @@ class Match:
         self.player_chosen_hand_card = None
         # table
         printhelp = [(x.v_table, x.suit) for x in self.player_chosen_table_cards]
-        print(printhelp)
+        print("chosen table cards", printhelp)
         for c in self.player_chosen_table_cards:
             self.table.remove(c)
+            self.player_collected_cards.append(c)
         self.player_chosen_table_cards = []
-        self.change_turn()
-        return True
     
     def play_card_to_table(self):
         self.table.append(self.player_chosen_hand_card)
         self.player_hand.remove(self.player_chosen_hand_card)
         self.player_chosen_hand_card = None
-        self.change_turn()
     
     def change_turn(self):
         if self.turn:
@@ -86,3 +91,7 @@ class Match:
         for card in tc:
             self.computer_collected_cards.append(card)
             self.table.remove(card)
+
+    def print_hands(self):
+        print("player col:",[(c.v_hand, c.suit) for c in self.player_collected_cards])
+        print("computer col:",[(c.v_hand, c.suit) for c in self.computer_collected_cards])

@@ -29,15 +29,14 @@ class Events:
                 self.check_click_player_hand()
                 self.check_click_table()
                 self.check_click_game_buttons()
+            if self.event.button == 3:
+                self.info.match.print_hands()
 
     def check_click_game_buttons(self):
         for b in self.info.game_buttons:
             if self.check_button(b):
                 if b.id == 3:
-                    if  self.info.match.check_if_player_can_pick_cards():
-                        self.info.match.move_selected_cards_to_player()
-                    else:
-                        self.info.match.play_card_to_table()
+                   self.info.match.player_action_button()
 
     def check_click_table(self):
         match = self.info.match
