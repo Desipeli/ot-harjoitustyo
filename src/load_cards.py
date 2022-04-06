@@ -13,7 +13,7 @@ def load_cards(path = "images/cards/"):
         if v_hand == 1:
             v_hand = 14
         elif v_hand == 2:
-            if f[2] == "clubs.png":
+            if f[2] == "spades.png":
                 v_hand = 15
         if v_hand == 10:
             if f[2] == "diamonds.png":
