@@ -6,6 +6,8 @@ class Match:
         self.info = info
         self.player_hand = []
         self.computer_hand = []
+        self.player_collected_cards = []
+        self.computer_collected_cards = []
         self.deck = None
         self.table = []
         self.turn = True # t = player, f = computer
@@ -43,5 +45,23 @@ class Match:
             if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0:
                 return True
         return False
+    
+    def move_selected_cards_to_player(self):
+        # hand
+        self.player_collected_cards.append(self.player_chosen_hand_card)
+        self.player_hand.remove(self.player_chosen_hand_card)
+        self.player_chosen_hand_card = None
+        # table
+        printhelp = [(x.v_table, x.suit) for x in self.player_chosen_table_cards]
+        print(printhelp)
+        for c in self.player_chosen_table_cards:
+            self.table.remove(c)
+        self.player_chosen_table_cards = []
+        return True
+    
+    def play_card_to_table(self):
+        self.table.append(self.player_chosen_hand_card)
+        self.player_hand.remove(self.player_chosen_hand_card)
+        self.player_chosen_hand_card = None
     
 

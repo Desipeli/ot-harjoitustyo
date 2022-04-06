@@ -28,8 +28,16 @@ class Events:
                 self.check_click_deck()
                 self.check_click_player_hand()
                 self.check_click_table()
+                self.check_click_game_buttons()
 
-
+    def check_click_game_buttons(self):
+        for b in self.info.game_buttons:
+            if self.check_button(b):
+                if b.id == 3:
+                    if  self.info.match.check_if_player_can_pick_cards():
+                        self.info.match.move_selected_cards_to_player()
+                    else:
+                        self.info.match.play_card_to_table()
 
     def check_click_table(self):
         match = self.info.match
