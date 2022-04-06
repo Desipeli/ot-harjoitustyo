@@ -12,6 +12,8 @@ class Match:
         self.round = 1
         self.points_player = 0
         self.points_computer = 0
+        self.player_chosen_hand_card = None
+        self.player_chosen_table_cards = []
         
     def start_round(self):
         self.deal_cards(True)
