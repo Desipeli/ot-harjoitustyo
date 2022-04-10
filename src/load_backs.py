@@ -3,7 +3,7 @@ from card import Card
 import pygame
 
 
-def load_backs(path="images/back/"):
+def load_backs(path="src/images/back/"):
     backs = []
     scale = (103, 150)
     for file in os.listdir(path):
