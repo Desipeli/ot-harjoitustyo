@@ -6,8 +6,7 @@ class Cpl:
         self.info = info
 
     def check_turn(self):
-        if not self.info.match.turn:  # f = computers turn
-            self.play()
+        self.play()
 
     def play(self):
         m = self.info.match
