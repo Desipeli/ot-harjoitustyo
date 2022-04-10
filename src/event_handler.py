@@ -3,6 +3,7 @@ import sys
 from match import Match
 from deck import Deck
 
+
 class Events:
 
     def check_event(self, event, info):
@@ -14,14 +15,13 @@ class Events:
             pygame.quit()
             sys.exit()
 
-    
     def check_clicks(self):
         # Menu
         if self.info.game_stage == 0 and self.event.button == 1:
             for b in self.info.menu_buttons:
                 if self.check_button(b):
                     if b.text == "Play":
-                        self.start_match()        
+                        self.start_match()
         # Game tabel
         elif self.info.game_stage == 1:
             if self.event.button == 1 and self.info.match.turn:
@@ -36,14 +36,15 @@ class Events:
         for b in self.info.game_buttons:
             if self.check_button(b):
                 if b.id == 3:
-                   self.info.match.player_action_button()
+                    self.info.match.player_action_button()
 
     def check_click_table(self):
         match = self.info.match
         for card in match.table:
             if self.check_click_surface(card):
                 print("pöytä", [x.v_table for x in match.table])
-                print("Pöytä valittu",card.v_table, [x.v_table for x in match.player_chosen_table_cards])
+                print("Pöytä valittu", card.v_table, [
+                      x.v_table for x in match.player_chosen_table_cards])
                 if card not in match.player_chosen_table_cards:
                     match.player_chosen_table_cards.append(card)
                 else:
@@ -52,17 +53,17 @@ class Events:
     def check_click_player_hand(self):
         match = self.info.match
         for card in match.player_hand:
-            if self.check_click_surface(card): # Player chose a card in hand
+            if self.check_click_surface(card):  # Player chose a card in hand
                 print(card.v_hand)
                 match.player_chosen_hand_card = card
-            
-    
-    def check_click_surface(self, s): # This can be used to check if player clicked a card
-            p = self.event.pos
-            if p[0] >= s.pos[0] and p[0] <= s.pos[0] + s.image.get_width():
-                if p[1] >= s.pos[1] and p[1] <= s.pos[1] + s.image.get_height():
-                    return True
-            return False
+
+    # This can be used to check if player clicked a card
+    def check_click_surface(self, s):
+        p = self.event.pos
+        if p[0] >= s.pos[0] and p[0] <= s.pos[0] + s.image.get_width():
+            if p[1] >= s.pos[1] and p[1] <= s.pos[1] + s.image.get_height():
+                return True
+        return False
 
     def check_button(self, button):
         if self.event.pos[0] >= button.center[0] and self.event.pos[0] <= button.center[0]+button.size[0]:
@@ -93,5 +94,3 @@ class Events:
         self.info.match = match
         self.info.game_stage = 1
         match.start_round()
-        
-        

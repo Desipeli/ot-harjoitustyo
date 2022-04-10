@@ -1,6 +1,7 @@
 import pygame
 from event_handler import Events
-from draw import Draw       
+from draw import Draw
+
 
 class Loop:
 
@@ -19,8 +20,9 @@ class Loop:
             self.info.screen.fill((0, 81, 44))
             self.draw.draw()
             # Game stage testing
-            text_game_stage = self.info.font.render(f"Game stage: {self.info.game_stage}", True, (0,0,0))
-            self.info.screen.blit(text_game_stage, (10,10))
+            text_game_stage = self.info.font.render(
+                f"Game stage: {self.info.game_stage}", True, (0, 0, 0))
+            self.info.screen.blit(text_game_stage, (10, 10))
             pygame.display.flip()
             self.clock.tick(60)
 

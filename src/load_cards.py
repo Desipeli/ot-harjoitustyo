@@ -2,9 +2,10 @@ import os
 from card import Card
 import pygame
 
-def load_cards(path = "images/cards/"):
+
+def load_cards(path="images/cards/"):
     cards = []
-    scale = (103,150)
+    scale = (103, 150)
     for file in os.listdir(path):
         f = file.split("_")
         v_hand = int(f[0])
@@ -19,6 +20,6 @@ def load_cards(path = "images/cards/"):
             if f[2] == "diamonds.png":
                 v_hand = 16
         image = pygame.transform.scale(image, scale)
-        c = Card(v_hand, v_table, f[2].split(".")[0],image)
+        c = Card(v_hand, v_table, f[2].split(".")[0], image)
         cards.append(c)
     return cards
