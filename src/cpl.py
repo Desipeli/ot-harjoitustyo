@@ -5,9 +5,6 @@ class Cpl:
     def __init__(self, info):
         self.info = info
 
-    def check_turn(self):
-        self.play()
-
     def play(self):
         m = self.info.match
         # if cards in hand

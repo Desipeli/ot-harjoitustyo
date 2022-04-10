@@ -84,7 +84,7 @@ class Match:
             self.deal_cards(False)
         if self.turn:
             self.turn = False
-            self.cpl.check_turn()
+            self.cpl.play()
         else:
             self.turn = True
 
