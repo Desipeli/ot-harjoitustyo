@@ -49,7 +49,7 @@ class Cpl:
         if card.v_hand == 14 or card.v_hand == 15:
             value += 1
         elif card.v_hand == 16:
-            value += 1
+            value += 2
         if card.suit == "spades":
             # check if player has < half of spades
             if len([x for x in self.info.match.player_collected_cards if x.suit == "spades"]) < 7:
