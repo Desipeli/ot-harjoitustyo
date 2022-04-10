@@ -28,7 +28,9 @@ class Game:
                     (self.screen.get_width()/2, self.screen.get_height() - 60))
         self.game_buttons = [b4]
 
-        self.info = info.Info(self.screen, self.font)
+        self.info = info.Info()
+        self.info.screen = self.screen
+        self.info.font = self.font
         # Load images
         self.cards = load_cards()
         self.backs = load_backs()

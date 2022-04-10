@@ -1,9 +1,9 @@
 
 
 class Info:
-    def __init__(self, screen, font):
-        self.screen = screen
-        self.font = font
+    def __init__(self):
+        self.screen = None
+        self.font = None
         self.game_stage = 0
         self.cards = []
         self.backs = []
