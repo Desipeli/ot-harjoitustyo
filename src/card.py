@@ -1,4 +1,5 @@
 
+
 class Card:
 
     def __init__(self, v_hand, v_table, suit, image):

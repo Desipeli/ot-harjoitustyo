@@ -1,4 +1,3 @@
-import pygame
 from cpl import Cpl
 
 

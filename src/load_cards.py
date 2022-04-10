@@ -1,6 +1,6 @@
 import os
-from card import Card
 import pygame
+from card import Card
 
 
 def load_cards(path="images/cards/"):

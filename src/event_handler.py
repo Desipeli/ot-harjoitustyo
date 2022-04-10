@@ -1,5 +1,5 @@
-import pygame
 import sys
+import pygame
 from match import Match
 from deck import Deck
 

@@ -1,12 +1,7 @@
 import pygame
-import sys
 from button import Button
-from card import Card
-from draw import Draw
-from deck import Deck
 from load_backs import load_backs
 from load_cards import load_cards
-from event_handler import Events
 import info
 from loop import Loop
 

@@ -1,5 +1,6 @@
 # Computer player logic
 
+
 class Cpl:
     def __init__(self, info):
         self.info = info
@@ -46,7 +47,6 @@ class Cpl:
 
     def card_value(self, card):
         value = 0
-        spades = 0
         if card.v_hand == 14 or card.v_hand == 15:
             value += 1
         elif card.v_hand == 16:

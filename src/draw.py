@@ -1,8 +1,4 @@
 
-import pygame
-
-from deck import Deck
-
 
 class Draw:
     def __init__(self, info):
