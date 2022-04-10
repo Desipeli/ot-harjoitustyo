@@ -1,6 +1,6 @@
 import pygame
 from event_handler import Events
-from draw import Draw
+from ui.draw import Draw
 
 
 class Loop:
