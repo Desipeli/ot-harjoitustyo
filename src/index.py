@@ -1,7 +1,7 @@
 import pygame
-from button import Button
-from load_backs import load_backs
-from load_cards import load_cards
+from ui.button import Button
+from ui.load_backs import load_backs
+from ui.load_cards import load_cards
 import info
 from loop import Loop
 
