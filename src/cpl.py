@@ -1,9 +1,11 @@
+from calc import Calcs
+
+
 # Computer player logic
-
-
 class Cpl:
     def __init__(self, info):
         self.info = info
+        self.calcs = Calcs()
 
     def play(self):
         m = self.info.match
@@ -33,27 +35,12 @@ class Cpl:
         # card = self.info.match.computer_hand[0] # first for now
         # self.info.match.computer_card_to_table(card)
         m = self.info.match
+        p_col = m.player_collected_cards
         weakest_card = m.computer_hand[0]
         for card in m.computer_hand:
-            print("weakest card:", weakest_card.v_hand, weakest_card.suit, self.card_value(
-                weakest_card), "card", card.v_hand, card.suit, self.card_value(card))
-            if self.card_value(card) < self.card_value(weakest_card):
+            if self.calcs.card_value(card, p_col) < self.calcs.card_value(weakest_card, p_col):
                 weakest_card = card
         self.info.match.computer_card_to_table(weakest_card)
-
-    def card_value(self, card):
-        value = 0
-        if card.v_hand == 14 or card.v_hand == 15:
-            value += 1
-        elif card.v_hand == 16:
-            value += 2
-        if card.suit == "spades":
-            # check if player has < half of spades
-            if len([x for x in self.info.match.player_collected_cards if x.suit == "spades"]) < 7:
-                print("player spades:", len(
-                    [x for x in self.info.match.player_collected_cards if x.suit == "spades"]))
-                value += 0.2
-        return value
 
     def just_some_card(self):
         # For now check if any card matches hand
