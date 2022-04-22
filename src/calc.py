@@ -26,27 +26,27 @@ class Calcs:
             value += self.card_value(c, p_col)
         return value
 
-    def find_all_table_combinations(self, table):
+    def find_all_table_combinations(self, table, p_col):
         checked = [1 for x in range(len(table))]
         combinations_and_value = {}
-        self.table_combinations(0, checked, table, combinations_and_value)
+        self.table_combinations(0, checked, table, combinations_and_value, p_col)
         print(combinations_and_value)
         return combinations_and_value
 
-    def table_combinations(self, index, checked, table, combinations_and_value):
+    def table_combinations(self, index, checked, table, combinations_and_value, p_col):
         if index == len(checked):
             value = 0
             cards_key = []
             for c in range(len(checked)):
                 if checked[c] == 1:
-                    value += self.card_value(table[c])
+                    value += self.card_value(table[c], p_col)
                     cards_key.append(c)   
             cards_key = tuple(cards_key)
             combinations_and_value[cards_key] = value
         else:
             for i in range(2):
                 checked[index] = i
-                self.table_combinations(index +1, checked, table, combinations_and_value)
+                self.table_combinations(index +1, checked, table, combinations_and_value, p_col)
 
 if __name__ == "__main__":
     calc = Calcs()
@@ -59,4 +59,4 @@ if __name__ == "__main__":
         Card(8, 8, "hearts", "image")
     ]
     #calc.find_combinations([Card(10,10,"spades","image")], table, [])
-    calc.find_all_table_combinations(table1)
+    calc.find_all_table_combinations(table1, [])
