@@ -1,10 +1,11 @@
 from cpl import Cpl
-
+from calc import Calcs
 
 class Match:
     def __init__(self, info):
         self.info = info
         self.cpl = Cpl(info)
+        self.calc = Calcs()
         self.player_hand = []
         self.computer_hand = []
         self.player_collected_cards = []
@@ -17,9 +18,14 @@ class Match:
         self.points_computer = 0
         self.player_chosen_hand_card = None
         self.player_chosen_table_cards = []
+        self.table_combinations = {} # This must be updated every time table is updated
 
     def start_round(self):
         self.deal_cards(True)
+
+    def update_table_combinations(self):
+        self.table_combinations = self.calc.find_all_table_combinations(self.table, self.player_collected_cards)
+        print(self.table_combinations)
 
     def deal_cards(self, start_of_round):
         for i in range(2):
@@ -33,18 +39,32 @@ class Match:
                 self.deal_two_cards_to(self.player_hand)
                 if start_of_round:
                     self.deal_two_cards_to(self.table)
+        self.update_table_combinations()
 
     def deal_two_cards_to(self, target):
         target.append(self.deck.pick_top())
         target.append(self.deck.pick_top())
+
+    #def check_if_player_can_pick_cards(self):
+    #    if len(self.player_chosen_table_cards) > 0:  # Player has chosen cards from table
+    #        for c in self.player_chosen_table_cards:
+    #            if c.v_table > self.player_chosen_hand_card.v_hand:
+    #                return False
+    #        if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0: # filter most of the cases
+    #            return True
+    #    return False
 
     def check_if_player_can_pick_cards(self):
         if len(self.player_chosen_table_cards) > 0:  # Player has chosen cards from table
             for c in self.player_chosen_table_cards:
                 if c.v_table > self.player_chosen_hand_card.v_hand:
                     return False
-            if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0:
-                return True
+            if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0: # filter most of the cases
+                checked = [0 for x in range(len(self.player_chosen_table_cards))]
+                print("start checking")
+                result = self.calc.check_if_pick_is_allowed(self.player_chosen_table_cards, self.player_chosen_hand_card, checked, 0, 0, {})
+                print(result)
+                return result
         return False
 
     def player_action_button(self):
@@ -70,17 +90,18 @@ class Match:
             self.add_points_to("player", c)
             self.player_collected_cards.append(c)
         self.player_chosen_table_cards = []
+        self.update_table_combinations()
 
     def play_card_to_table(self):
         self.table.append(self.player_chosen_hand_card)
         self.player_hand.remove(self.player_chosen_hand_card)
         self.player_chosen_hand_card = None
+        self.update_table_combinations()
 
     def change_turn(self):
         print(len(self.player_hand), len(
             self.computer_hand), len(self.deck.see_deck()))
         if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0:
-            print("deallll")
             self.deal_cards(False)
         if self.turn:
             self.turn = False
@@ -91,6 +112,7 @@ class Match:
     def computer_card_to_table(self, card):
         self.table.append(card)
         self.computer_hand.remove(card)
+        self.update_table_combinations()
         print("computer played", card.v_hand, card.suit, " to table")
 
     def move_selected_cards_to_computer(self, cc, tc):
@@ -103,6 +125,7 @@ class Match:
             self.computer_collected_cards.append(card)
             self.add_points_to("computer", card)
             self.table.remove(card)
+        self.update_table_combinations()
 
     def print_hands(self):
         print("player col:", [(c.v_hand, c.suit)
