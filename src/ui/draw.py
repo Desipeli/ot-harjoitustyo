@@ -78,8 +78,9 @@ class Draw:
                 cw = self.info.match.deck.get_back().image.get_width()
                 button.pos = (self.info.screen.get_width(
                 )/2 - (len(self.info.match.player_hand) * cw / 2) - cw, button.pos[1])
-                if m.check_if_player_can_pick_cards():
-                    button.text = "pick cards"
-                else:
-                    button.text = "play to table"
+                #if m.check_if_player_can_pick_cards():
+                    #button.text = "pick cards"
+                #else:
+                #    button.text = "play to table"
+                button.text = "Play card"
             button.draw()
