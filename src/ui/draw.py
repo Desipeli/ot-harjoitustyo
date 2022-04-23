@@ -1,3 +1,4 @@
+from ui.match_ended import MatchEnded
 
 
 class Draw:
@@ -9,11 +10,13 @@ class Draw:
         if self.info.game_stage == 0:
             for b in self.info.menu_buttons:
                 b.draw()
+            
 
         # draw deck only if cards left
         if self.info.game_stage == 1:
             self.draw_game_buttons()
             self.draw_points()
+            self.draw_sweeps()
             self.draw_info_text_computer()
             self.draw_info_text_player()
             if len(self.info.match.deck.see_deck()) > 0:
@@ -24,16 +27,33 @@ class Draw:
                 self.draw_hand(self.info.match.computer_hand)
             if len(self.info.match.table) > 0:
                 self.draw_table()
+            if self.info.match.winner:
+                self.match_ended()
             
 
     def draw_points(self):
         font = self.info.font
-        p = self.info.match.points_player
-        c = self.info.match.points_computer
-        tp = font.render(f"player: {p}", True, (200, 200, 200))
-        tc = font.render(f"computer: {c}", True, (200, 200, 200))
-        self.info.screen.blit(tp, (1100, 100))
-        self.info.screen.blit(tc, (1100, 200))
+        
+
+    def draw_sweeps(self):
+        font = self.info.font
+        m = self.info.match
+        screen_width = self.info.screen.get_width()
+        screen_height = self.info.screen.get_height()
+        # points
+        p = m.points_player
+        c = m.points_computer
+        tp = font.render(f"Player's points: {p}", True, (200, 200, 200))
+        tc = font.render(f"Computer's points: {c}", True, (200, 200, 200))
+        self.info.screen.blit(tp, (screen_width - tp.get_width()-50, screen_height - tp.get_height() - 100))
+        self.info.screen.blit(tc, (screen_width - tc.get_width()-50, tc.get_height() + 100))
+        #sweeps
+        value_player = m.sweep_player
+        value_computer = m.sweep_computer
+        player_text = font.render(f"Player's sweeps: {value_player}", True, (200,200,200))
+        computer_text = font.render(f"Computer's sweeps: {value_computer}", True, (200,200,200))
+        self.info.screen.blit(player_text, (screen_width - player_text.get_width()-50, screen_height - player_text.get_height() - 50))
+        self.info.screen.blit(computer_text, (screen_width - computer_text.get_width()-50, player_text.get_height() + 50))
 
     def draw_table(self):
         i = 0
@@ -104,3 +124,8 @@ class Draw:
         card_height = self.info.match.deck.get_back()
         info_text = font.render(text, True, (200, 200, 200))
         self.info.screen.blit(info_text, ((self.info.screen.get_width() / 2) - info_text.get_width() / 2, self.info.screen.get_height() - card_height.image.get_height() - info_text.get_height() - 100))
+
+    def match_ended(self):
+        m = self.info.match
+        m_e = MatchEnded(self.info.screen, m.winner)
+        m_e.draw()
