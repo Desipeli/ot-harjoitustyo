@@ -4,7 +4,6 @@ from calc import Calcs
 class Match:
     def __init__(self, info):
         self.info = info
-        #self.cpl = Cpl(info)
         self.cpl = Cpl()
         self.calc = Calcs()
         self.player_hand = []
@@ -14,7 +13,8 @@ class Match:
         self.deck = None
         self.table = []
         self.turn = True  # t = player, f = computer
-        self.round = 1
+        self.round = 0
+        self.round_ongoing = True
         self.points_player = 0
         self.points_computer = 0
         self.player_chosen_hand_card = None
@@ -23,9 +23,14 @@ class Match:
         self.info_text_player = ""
 
     def start_round(self):
+        self.deck.assemble_deck()
+        self.deck.shuffle()
+        self.round += 1
+        self.round_ongoing = True
         self.deal_cards(True)
 
     def deal_cards(self, start_of_round):
+        print(self.round)
         for i in range(2):
             if self.round % 2 == 1:  # Start by dealing player first
                 self.info_text_player = "Your turn"
@@ -59,23 +64,25 @@ class Match:
         return False
 
     def player_action_button(self):
-        if self.player_chosen_hand_card == None:
-            self.info_text_player = "Choose a card from hand"
-            return
-        if self.check_if_player_can_pick_cards():
-            self.move_selected_cards_to_player()
-        else:
-            if len(self.player_chosen_table_cards) > 0:
+        if self.round_ongoing:
+            if self.player_chosen_hand_card == None:
+                self.info_text_player = "Choose a card from hand"
                 return
-            self.play_card_to_table()
-        self.change_turn()
+            if self.check_if_player_can_pick_cards():
+                self.move_selected_cards_to_player()
+            else:
+                if len(self.player_chosen_table_cards) > 0:
+                    return
+                self.play_card_to_table()
+            self.change_turn()
+        else:
+            self.start_round()
 
     def move_selected_cards_to_player(self):
         # hand
         self.player_collected_cards.append(self.player_chosen_hand_card)
         self.add_points_to("player", self.player_chosen_hand_card)
         self.player_hand.remove(self.player_chosen_hand_card)
-        
         # table
         #picked_cards = ""
         for c in self.player_chosen_table_cards:
@@ -95,16 +102,19 @@ class Match:
         self.player_chosen_hand_card = None
 
     def change_turn(self):
-        print(len(self.player_hand), len(
-            self.computer_hand), len(self.deck.see_deck()))
-        if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0:
+        #print(len(self.player_hand), len(
+        #    self.computer_hand), len(self.deck.see_deck()))
+        if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0: # Empty deck
+            print("deck is empty")
             self.deal_cards(False)
+        elif len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) == 0: # Round ends
+            self.info_text_player = "Round!"
+            self.round_ongoing = False
+            print("Round ends")
         if self.turn:
             self.turn = False
             result = self.cpl.play(self.table, self.computer_hand, self.player_collected_cards)
-            print("ressu", result)
             if result:
-                print("result")
                 if result[0] == "card_to_table":
                     self.computer_card_to_table(result[1])
                 elif result[0] == "cards_to_computer":
@@ -127,9 +137,10 @@ class Match:
         for card in table_cards:
             self.table.remove(card)
             self.computer_collected_cards.append(card)
+            self.add_points_to("computer", card)
             picked_cards += f"{card.v_table} of {card.suit} ,"
         self.info_text_computer = f"Computer picked [{picked_cards}] with {hand_card.v_hand} of {hand_card.suit}"
-        #self.add_points_to
+        self.add_points_to("computer", hand_card)
 
     def print_hands(self):
         print("player col:", [(c.v_hand, c.suit)
