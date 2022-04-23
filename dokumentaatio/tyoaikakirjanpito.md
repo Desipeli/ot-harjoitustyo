@@ -5,5 +5,5 @@
 |6.4|7h|Luotu hyvin yksinkertainen tietokonevastus, eriytetty toiminnallisuuksia ja korjailtu bugeja|
 |10.4|3h|Pylintin käyttöönotto, refaktorointia ja pientä hienosäätöä|
 |22.4|6h|Keskitytty enimmäkseen korttiyhdistelmien oikeellisuuden arviointiin|
-|23.4|8h|Jatkettu yhdistelmillä, saatu tietokone pelaamaan melko järkevästi. Refaktorointia. Peliä voi nyt pelata|
-
+|23.4|9h|Jatkettu yhdistelmillä, saatu tietokone pelaamaan melko järkevästi. Refaktorointia. Peliä voi nyt pelata. Ensimmäinen release. Kokeiltu asentaa windowsille|
+|Yht|33h|
