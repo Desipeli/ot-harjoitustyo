@@ -53,8 +53,9 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 3. Pelaa!
 
 ### Pelaaminen windowsilla
-1. suorita ``` poetry shell```
-2. suorita ``` python .\src\index.py ```
+1. Siirry powershellillä pelin päähakemistoon
+2. suorita ``` poetry shell```
+3. suorita ``` python .\src\index.py ```
 
 Voit myös muokata task.py tiedoston start-funktion muotoon ```ctx.run("python src/index.py", pty=False)```, jonka jälkeen invoke-komento saattaa toimia.
 Jos peli-ikkuna venyy liian suureksi, kannattaa tarkistaa näytön asetuksista skaalaus
