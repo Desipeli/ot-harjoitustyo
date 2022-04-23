@@ -28,6 +28,10 @@ class Game:
                     (self.screen.get_width()/2, self.screen.get_height() - 60))
         self.game_buttons = [b4]
 
+        b5 = Button(4, self.screen, "Main menu", (150, 60),
+                    (self.screen.get_width()/2, self.screen.get_height()/2 + 100))
+        self.match_end_buttons = [b5]
+
         self.info = info.Info()
         self.info.screen = self.screen
         self.info.font = self.font
@@ -39,6 +43,7 @@ class Game:
         self.info.backs = self.backs
         self.info.menu_buttons = self.menu_buttons
         self.info.game_buttons = self.game_buttons
+        self.info.match_end_buttons = self.match_end_buttons
 
         self.loop = Loop(self.info)
 

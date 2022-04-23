@@ -29,6 +29,7 @@ class Events:
                 self.check_click_player_hand()
                 self.check_click_table()
                 self.check_click_game_buttons()
+                self.check_click_match_end()
             if self.event.button == 3:
                 self.info.match.print_hands()
 
@@ -94,3 +95,9 @@ class Events:
         self.info.match = match
         self.info.game_stage = 1
         match.start_round()
+
+    def check_click_match_end(self):
+        for b in self.info.match_end_buttons:
+            if self.check_button(b):
+                if b.id == 4 and self.info.match.winner:
+                    self.info.match.back_to_main_menu()

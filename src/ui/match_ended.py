@@ -16,7 +16,7 @@ class MatchEnded:
         self.__draw_text()
     
     def __draw_background(self):    
-        pygame.draw.rect(self.screen, (0,0,0), [self.screen.get_width()/2 - self.bg_width/2, self.screen.get_height()/2 - self.bg_height/2, self.bg_width, self.bg_height])
+        pygame.draw.rect(self.screen, (0, 41, 24), [self.screen.get_width()/2 - self.bg_width/2, self.screen.get_height()/2 - self.bg_height/2, self.bg_width, self.bg_height])
     
     def __draw_text(self):
         text = ""

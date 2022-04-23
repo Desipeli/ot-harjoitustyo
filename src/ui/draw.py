@@ -19,6 +19,7 @@ class Draw:
             self.draw_sweeps()
             self.draw_info_text_computer()
             self.draw_info_text_player()
+            
             if len(self.info.match.deck.see_deck()) > 0:
                 self.draw_deck()
             if len(self.info.match.player_hand) > 0:
@@ -29,7 +30,6 @@ class Draw:
                 self.draw_table()
             if self.info.match.winner:
                 self.match_ended()
-            
 
     def draw_points(self):
         font = self.info.font
@@ -129,3 +129,5 @@ class Draw:
         m = self.info.match
         m_e = MatchEnded(self.info.screen, m.winner)
         m_e.draw()
+        for b in self.info.match_end_buttons:
+            b.draw()
