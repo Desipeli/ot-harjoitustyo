@@ -30,6 +30,16 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 1. Pura tiedosto haluamaasi hakemistoon
 2. Suorita ``` poetry install ```
 
+### python 3 asennus windowsille
+
+1. lataa asennuspaketti [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
+2. Asenna ja käynnistä powershell uudestaan jos se oli auki
+
+### poetryn asennus windowsille
+
+1. Suorita ``` (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python - ``` Powershellissä (cmd:ssä ei välttämättä toimi)
+2. Lisää ilmoitettu polku ympäristömuuttujaan
+
 ## Käyttö
 
 ### Pelaaminen
@@ -37,6 +47,11 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 1. Siirry komentorivillä pelin päähakemistoon
 2. Suorita ``` poetry run invoke start ```
 3. Pelaa!
+
+### Pelaaminen windowsilla
+1. suorita ``` poetry shell```
+2. suorita ``` python .\src\index.py ```
+Toistaiseksi invoke-komennot eivät toimi windowsilla. Peli saattaa venyä koko näytölle...
 
 ### Muut
 
