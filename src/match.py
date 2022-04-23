@@ -4,7 +4,8 @@ from calc import Calcs
 class Match:
     def __init__(self, info):
         self.info = info
-        self.cpl = Cpl(info)
+        #self.cpl = Cpl(info)
+        self.cpl = Cpl()
         self.calc = Calcs()
         self.player_hand = []
         self.computer_hand = []
@@ -108,7 +109,15 @@ class Match:
             self.deal_cards(False)
         if self.turn:
             self.turn = False
-            self.cpl.play()
+            result = self.cpl.play(self.table, self.computer_hand, self.player_collected_cards)
+            print("ressu", result)
+            if result:
+                print("result")
+                if result[0] == "card_to_table":
+                    self.computer_card_to_table(result[1])
+                elif result[0] == "cards_to_computer":
+                    self.move_selected_cards_to_computer(result[1], result[2])
+            self.change_turn()
         else:
             self.turn = True
             self.info_text_player = "Your turn"
