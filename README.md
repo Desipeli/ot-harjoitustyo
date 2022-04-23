@@ -32,7 +32,16 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 ## Käyttö
 
+### Pelaaminen
+
 1. Siirry komentorivillä pelin päähakemistoon
 2. Suorita ``` poetry run invoke start ```
 3. Pelaa!
+
+### Muut
+
+- Testejä voi ajaa komennolla ``` poetry run invoke test ```
+- Testikattavuusraportointi ``` poetry run invoke test ``` Löytyy suorituksen jälkeen htmlcov/index.html
+- pylint-tarkistus suoritetaan komennolla ``` poetry run invoke lint ```
+
 
