@@ -24,3 +24,15 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 - [monopolikaavio](https://github.com/Desipeli/ot-harjoitustyo/blob/master/laskarit/viikko3/monopoli.md)
 - [sekvenssikaavio](https://github.com/Desipeli/ot-harjoitustyo/blob/master/laskarit/viikko3/sekvenssi.md)
 - [laajempi sekvenssikaavio](https://github.com/Desipeli/ot-harjoitustyo/blob/master/laskarit/viikko3/laajempisekvenssi.md)
+
+## Asennusohjeet
+
+1. Pura tiedosto haluamaasi hakemistoon
+2. Suorita ``` poetry install ```
+
+## Käyttö
+
+1. Siirry komentorivillä pelin päähakemistoon
+2. Suorita ``` poetry run invoke start ```
+3. Pelaa!
+
