@@ -85,7 +85,10 @@ class Draw:
                     #button.text = "pick cards"
                 #else:
                 #    button.text = "play to table"
-                button.text = "Play card"
+                if m.round_ongoing:
+                    button.text = "Play card"
+                else:
+                    button.text = "New round"
             button.draw()
 
     def draw_info_text_computer(self):
