@@ -25,6 +25,10 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 - [sekvenssikaavio](https://github.com/Desipeli/ot-harjoitustyo/blob/master/laskarit/viikko3/sekvenssi.md)
 - [laajempi sekvenssikaavio](https://github.com/Desipeli/ot-harjoitustyo/blob/master/laskarit/viikko3/laajempisekvenssi.md)
 
+### Viikko 5
+
+- Ensimmäinen julkaisu [https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennusohjeet
 
 1. Pura tiedosto haluamaasi hakemistoon
