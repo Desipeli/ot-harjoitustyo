@@ -17,11 +17,9 @@ class Cpl:
             # no cards in hand, return turn to player for now
             return False
         if len(table) < 1:
-            print("table < 1")
             # no cards in table, play a card to the table
             return self.choose_which_card_to_table(computer_hand, player_collected)
         else:
-            print("hand and table")
             # Check table cards for combinations
             return self.decide_what_cards_to_pick(table, computer_hand, player_collected)
 
@@ -30,7 +28,6 @@ class Cpl:
         for card in computer_hand:
             if self.calcs.card_value(card, player_collected) < self.calcs.card_value(weakest_card, player_collected):
                 weakest_card = card
-        print("weakest palautus", weakest_card)
         return ("card_to_table", weakest_card)
 
     def decide_what_cards_to_pick(self, table, computer_hand, player_collected):
@@ -39,8 +36,6 @@ class Cpl:
         if result:
             hand_card = result[0]
             table_cards = result[1]
-            print("palautus", hand_card, table_cards)
             return ("cards_to_computer", hand_card, table_cards)
         else: # No possible combinations, play card to table
-            print("ei palautus", computer_hand, player_collected)
             return self.choose_which_card_to_table(computer_hand, player_collected)
