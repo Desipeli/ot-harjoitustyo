@@ -2,6 +2,7 @@ import unittest
 from calc import Calcs
 from card import Card
 
+
 class TestCalc(unittest.TestCase):
     def setUp(self):
         self.calc = Calcs()
@@ -11,7 +12,7 @@ class TestCalc(unittest.TestCase):
             Card(6, 6, "diamonds", "image"),
             Card(8, 8, "spades", "image"),
         ]
-    
+
     def test_table_combinations_count(self):
         result = self.calc.find_all_table_combinations(self.cards, [])
         self.assertEqual(len(result), 16)
@@ -20,8 +21,9 @@ class TestCalc(unittest.TestCase):
         book = {}
         card = Card(8, 8, "hearts", "image")
         checked = [0 for x in range(len(self.cards))]
-        self.assertEqual(self.calc.check_if_pick_is_allowed(self.cards, card, checked, 0, 0, book), True)
-    
+        self.assertEqual(self.calc.check_if_pick_is_allowed(
+            self.cards, card, checked, 0, 0, book), True)
+
     def test_check_if_pick_is_allowed_yes_all_same(self):
         book = {}
         cards = [
@@ -31,7 +33,8 @@ class TestCalc(unittest.TestCase):
         ]
         card = Card(3, 3, "hearts", "image")
         checked = [0 for x in range(len(cards))]
-        self.assertEqual(self.calc.check_if_pick_is_allowed(cards, card, checked, 0, 0, book), True)
+        self.assertEqual(self.calc.check_if_pick_is_allowed(
+            cards, card, checked, 0, 0, book), True)
 
     def test_check_if_pick_is_allowed_yes_all_different(self):
         book = {}
@@ -42,7 +45,8 @@ class TestCalc(unittest.TestCase):
         ]
         card = Card(9, 9, "hearts", "image")
         checked = [0 for x in range(len(cards))]
-        self.assertEqual(self.calc.check_if_pick_is_allowed(cards, card, checked, 0, 0, book), True)
+        self.assertEqual(self.calc.check_if_pick_is_allowed(
+            cards, card, checked, 0, 0, book), True)
 
     def test_check_if_pick_is_allowed_no_all_same(self):
         book = {}
@@ -53,8 +57,9 @@ class TestCalc(unittest.TestCase):
         ]
         card = Card(4, 4, "hearts", "image")
         checked = [0 for x in range(len(cards))]
-        self.assertEqual(self.calc.check_if_pick_is_allowed(cards, card, checked, 0, 0, book), False)
-    
+        self.assertEqual(self.calc.check_if_pick_is_allowed(
+            cards, card, checked, 0, 0, book), False)
+
     def test_check_if_pick_is_allowed_no_all_different(self):
         book = {}
         cards = [
@@ -64,8 +69,9 @@ class TestCalc(unittest.TestCase):
         ]
         card = Card(10, 10, "hearts", "image")
         checked = [0 for x in range(len(cards))]
-        self.assertEqual(self.calc.check_if_pick_is_allowed(cards, card, checked, 0, 0, book), False)
-    
+        self.assertEqual(self.calc.check_if_pick_is_allowed(
+            cards, card, checked, 0, 0, book), False)
+
     def test_check_if_pick_is_allowed_no_one_allowed_pair(self):
         book = {}
         cards = [
@@ -75,8 +81,9 @@ class TestCalc(unittest.TestCase):
         ]
         card = Card(5, 5, "hearts", "image")
         checked = [0 for x in range(len(cards))]
-        self.assertEqual(self.calc.check_if_pick_is_allowed(cards, card, checked, 0, 0, book), False)
-    
+        self.assertEqual(self.calc.check_if_pick_is_allowed(
+            cards, card, checked, 0, 0, book), False)
+
     def test_check_if_pick_is_allowed_no_one_same_card(self):
         book = {}
         cards = [
@@ -86,4 +93,5 @@ class TestCalc(unittest.TestCase):
         ]
         card = Card(9, 9, "hearts", "image")
         checked = [0 for x in range(len(cards))]
-        self.assertEqual(self.calc.check_if_pick_is_allowed(cards, card, checked, 0, 0, book), False)
+        self.assertEqual(self.calc.check_if_pick_is_allowed(
+            cards, card, checked, 0, 0, book), False)

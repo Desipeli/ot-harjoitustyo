@@ -31,11 +31,13 @@ class Cpl:
         return ("card_to_table", weakest_card)
 
     def decide_what_cards_to_pick(self, table, computer_hand, player_collected):
-        all_combinations = self.calcs.find_all_table_combinations(table.copy(), player_collected)
-        result = self.calcs.check_best_combination_for_computer(all_combinations, computer_hand, table)
+        all_combinations = self.calcs.find_all_table_combinations(
+            table.copy(), player_collected)
+        result = self.calcs.check_best_combination_for_computer(
+            all_combinations, computer_hand, table)
         if result:
             hand_card = result[0]
             table_cards = result[1]
             return ("cards_to_computer", hand_card, table_cards)
-        else: # No possible combinations, play card to table
+        else:  # No possible combinations, play card to table
             return self.choose_which_card_to_table(computer_hand, player_collected)

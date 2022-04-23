@@ -10,7 +10,6 @@ class Draw:
         if self.info.game_stage == 0:
             for b in self.info.menu_buttons:
                 b.draw()
-            
 
         # draw deck only if cards left
         if self.info.game_stage == 1:
@@ -19,7 +18,7 @@ class Draw:
             self.draw_sweeps()
             self.draw_info_text_computer()
             self.draw_info_text_player()
-            
+
             if len(self.info.match.deck.see_deck()) > 0:
                 self.draw_deck()
             if len(self.info.match.player_hand) > 0:
@@ -33,7 +32,6 @@ class Draw:
 
     def draw_points(self):
         font = self.info.font
-        
 
     def draw_sweeps(self):
         font = self.info.font
@@ -45,15 +43,21 @@ class Draw:
         c = m.points_computer
         tp = font.render(f"Player's points: {p}", True, (200, 200, 200))
         tc = font.render(f"Computer's points: {c}", True, (200, 200, 200))
-        self.info.screen.blit(tp, (screen_width - tp.get_width()-50, screen_height - tp.get_height() - 100))
-        self.info.screen.blit(tc, (screen_width - tc.get_width()-50, tc.get_height() + 100))
-        #sweeps
+        self.info.screen.blit(
+            tp, (screen_width - tp.get_width()-50, screen_height - tp.get_height() - 100))
+        self.info.screen.blit(
+            tc, (screen_width - tc.get_width()-50, tc.get_height() + 100))
+        # sweeps
         value_player = m.sweep_player
         value_computer = m.sweep_computer
-        player_text = font.render(f"Player's sweeps: {value_player}", True, (200,200,200))
-        computer_text = font.render(f"Computer's sweeps: {value_computer}", True, (200,200,200))
-        self.info.screen.blit(player_text, (screen_width - player_text.get_width()-50, screen_height - player_text.get_height() - 50))
-        self.info.screen.blit(computer_text, (screen_width - computer_text.get_width()-50, player_text.get_height() + 50))
+        player_text = font.render(
+            f"Player's sweeps: {value_player}", True, (200, 200, 200))
+        computer_text = font.render(
+            f"Computer's sweeps: {value_computer}", True, (200, 200, 200))
+        self.info.screen.blit(player_text, (screen_width - player_text.get_width() -
+                              50, screen_height - player_text.get_height() - 50))
+        self.info.screen.blit(computer_text, (screen_width -
+                              computer_text.get_width()-50, player_text.get_height() + 50))
 
     def draw_table(self):
         i = 0
@@ -101,9 +105,9 @@ class Draw:
                 cw = self.info.match.deck.get_back().image.get_width()
                 button.pos = (self.info.screen.get_width(
                 )/2 - (len(self.info.match.player_hand) * cw / 2) - cw, button.pos[1])
-                #if m.check_if_player_can_pick_cards():
-                    #button.text = "pick cards"
-                #else:
+                # if m.check_if_player_can_pick_cards():
+                #button.text = "pick cards"
+                # else:
                 #    button.text = "play to table"
                 if m.round_ongoing:
                     button.text = "Play card"
@@ -116,14 +120,16 @@ class Draw:
         text = self.info.match.info_text_computer
         card_height = self.info.match.deck.get_back()
         info_text = font.render(text, True, (200, 200, 200))
-        self.info.screen.blit(info_text, ((self.info.screen.get_width() / 2) - info_text.get_width() / 2, card_height.image.get_height() + 10))
-    
+        self.info.screen.blit(info_text, ((self.info.screen.get_width(
+        ) / 2) - info_text.get_width() / 2, card_height.image.get_height() + 10))
+
     def draw_info_text_player(self):
         font = self.info.font
         text = self.info.match.info_text_player
         card_height = self.info.match.deck.get_back()
         info_text = font.render(text, True, (200, 200, 200))
-        self.info.screen.blit(info_text, ((self.info.screen.get_width() / 2) - info_text.get_width() / 2, self.info.screen.get_height() - card_height.image.get_height() - info_text.get_height() - 100))
+        self.info.screen.blit(info_text, ((self.info.screen.get_width() / 2) - info_text.get_width() / 2,
+                              self.info.screen.get_height() - card_height.image.get_height() - info_text.get_height() - 100))
 
     def match_ended(self):
         m = self.info.match

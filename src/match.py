@@ -52,7 +52,7 @@ class Match:
                 if start_of_round:
                     self.deal_two_cards_to(self.table)
         print(self.computer_hand)
-        #self.computer_turn()
+        # self.computer_turn()
 
     def deal_two_cards_to(self, target):
         target.append(self.deck.pick_top())
@@ -64,13 +64,17 @@ class Match:
                 if c.v_table > self.player_chosen_hand_card.v_hand:
                     self.info_text_player = "You can't pick cards of higher value"
                     return False
-            if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0: # filter most of the cases
-                checked = [0 for x in range(len(self.player_chosen_table_cards))]
+            # filter most of the cases
+            if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0:
+                checked = [0 for x in range(
+                    len(self.player_chosen_table_cards))]
                 print("start checking for combinations")
                 begin_timer = time()
-                result = self.calc.check_if_pick_is_allowed(self.player_chosen_table_cards, self.player_chosen_hand_card, checked, 0, 0, {})
+                result = self.calc.check_if_pick_is_allowed(
+                    self.player_chosen_table_cards, self.player_chosen_hand_card, checked, 0, 0, {})
                 end_timer = time()
-                print("Time spent searching for combinations:", end_timer-begin_timer, "s")
+                print("Time spent searching for combinations:",
+                      end_timer-begin_timer, "s")
                 return result
         return False
 
@@ -120,13 +124,13 @@ class Match:
         self.player_chosen_hand_card = None
 
     def change_turn(self):
-        #print(len(self.player_hand), len(
+        # print(len(self.player_hand), len(
         #    self.computer_hand), len(self.deck.see_deck()))
-        if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0: # Empty deck
+        if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0:  # Empty deck
             self.check_if_match_ends()
             print("Deal")
             self.deal_cards(False)
-        elif len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) == 0: # Round ends
+        elif len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) == 0:  # Round ends
             self.end_cards_to()
             self.round_end_points()
             self.info_text_player = "Round!"
@@ -139,7 +143,7 @@ class Match:
             self.computer_turn()
         else:
             self.player_turn()
-    
+
     def player_turn(self):
         self.turn = True
         self.info_text_player = "Your turn"
@@ -147,7 +151,8 @@ class Match:
     def computer_turn(self):
         self.turn = False
         begin_timer = time()
-        result = self.cpl.play(self.table, self.computer_hand, self.player_collected_cards)
+        result = self.cpl.play(
+            self.table, self.computer_hand, self.player_collected_cards)
         end_timer = time()
         print("Duration of computers turn:", end_timer-begin_timer, "s")
         if result:
@@ -199,7 +204,7 @@ class Match:
         picked_cards = ""
         for c in self.table:
             picked_cards += f" {c.v_table} of {c.suit}, "
-            if self.player_picked_last:        
+            if self.player_picked_last:
                 self.player_collected_cards.append(c)
                 self.add_points_to("player", c)
             else:
@@ -226,7 +231,7 @@ class Match:
             self.points_computer += 2
         self.player_collected_cards.clear()
         self.computer_collected_cards.clear()
-    
+
     def check_for_sweep(self):
         if max(self.points_computer, self.points_player) < 10 and len(self.table) == 0 and len(self.deck.see_deck()):
             print("sweep")
@@ -244,13 +249,13 @@ class Match:
     def check_if_match_ends(self):
         player_total = self.points_player + self.sweep_player
         computer_total = self.points_computer + self.sweep_computer
-        if max(player_total, computer_total) >= 16 and player_total != computer_total: # Match ends
+        if max(player_total, computer_total) >= 16 and player_total != computer_total:  # Match ends
             if player_total > computer_total:
                 print("Player wins with", player_total, "points")
                 self.winner = "player"
             else:
                 print("Computer wins with", computer_total, "points")
                 self.winner = "computer"
-    
+
     def back_to_main_menu(self):
         self.info.game_stage = 0
