@@ -1,5 +1,7 @@
+from time import time
 from cpl import Cpl
 from calc import Calcs
+
 
 class Match:
     def __init__(self, info):
@@ -15,12 +17,17 @@ class Match:
         self.turn = True  # t = player, f = computer
         self.round = 0
         self.round_ongoing = True
+        self.match_finished = False
+        self.winner = None
         self.points_player = 0
         self.points_computer = 0
         self.player_chosen_hand_card = None
         self.player_chosen_table_cards = []
         self.info_text_computer = ""
         self.info_text_player = ""
+        self.player_picked_last = False
+        self.sweep_player = 0
+        self.sweep_computer = 0
 
     def start_round(self):
         self.deck.assemble_deck()
@@ -30,7 +37,7 @@ class Match:
         self.deal_cards(True)
 
     def deal_cards(self, start_of_round):
-        print(self.round)
+        print("Round: ", self.round)
         for i in range(2):
             if self.round % 2 == 1:  # Start by dealing player first
                 self.info_text_player = "Your turn"
@@ -57,9 +64,11 @@ class Match:
                     return False
             if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0: # filter most of the cases
                 checked = [0 for x in range(len(self.player_chosen_table_cards))]
-                print("start checking")
+                print("start checking for combinations")
+                begin_timer = time()
                 result = self.calc.check_if_pick_is_allowed(self.player_chosen_table_cards, self.player_chosen_hand_card, checked, 0, 0, {})
-                print(result)
+                end_timer = time()
+                print("Time spent searching for combinations:", end_timer-begin_timer, "s")
                 return result
         return False
 
@@ -94,6 +103,7 @@ class Match:
         #self.info_text_player = f"You picked [{picked_cards}] with {self.player_chosen_hand_card.v_hand} of {self.player_chosen_hand_card.suit}"
         self.info_text_player = "Your turn"
         self.player_chosen_hand_card = None
+        self.player_picked_last = True
 
     def play_card_to_table(self):
         self.table.append(self.player_chosen_hand_card)
@@ -105,15 +115,24 @@ class Match:
         #print(len(self.player_hand), len(
         #    self.computer_hand), len(self.deck.see_deck()))
         if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0: # Empty deck
-            print("deck is empty")
+            self.check_if_match_ends()
+            print("Deal")
             self.deal_cards(False)
         elif len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) == 0: # Round ends
+            self.end_cards_to()
+            self.round_end_points()
             self.info_text_player = "Round!"
             self.round_ongoing = False
+            self.check_if_match_ends()
             print("Round ends")
+        else:
+            self.check_for_sweep()
         if self.turn:
             self.turn = False
+            begin_timer = time()
             result = self.cpl.play(self.table, self.computer_hand, self.player_collected_cards)
+            end_timer = time()
+            print("Duration of computers turn:", end_timer-begin_timer, "s")
             if result:
                 if result[0] == "card_to_table":
                     self.computer_card_to_table(result[1])
@@ -141,6 +160,7 @@ class Match:
             picked_cards += f"{card.v_table} of {card.suit} ,"
         self.info_text_computer = f"Computer picked [{picked_cards}] with {hand_card.v_hand} of {hand_card.suit}"
         self.add_points_to("computer", hand_card)
+        self.player_picked_last = False
 
     def print_hands(self):
         print("player col:", [(c.v_hand, c.suit)
@@ -158,3 +178,62 @@ class Match:
             self.points_player += points
         else:
             self.points_computer += points
+
+    def end_cards_to(self):
+        if len(self.table) == 0:
+            return
+        picked_cards = ""
+        for c in self.table:
+            picked_cards += f" {c.v_table} of {c.suit}, "
+            if self.player_picked_last:        
+                self.player_collected_cards.append(c)
+                self.add_points_to("player", c)
+            else:
+                self.computer_collected_cards.append(c)
+                self.add_points_to("computer", c)
+        if self.player_picked_last:
+            self.info_text_computer = f"Player got remaining cards: {picked_cards}"
+        else:
+            self.info_text_computer = f"Computer got remaining cards: {picked_cards}"
+        self.table.clear()
+
+    def round_end_points(self):
+        if len(self.player_collected_cards) > len(self.computer_collected_cards):
+            self.points_player += 1
+        elif len(self.player_collected_cards) < len(self.computer_collected_cards):
+            self.points_computer += 1
+        player_spades = 0
+        for c in self.player_collected_cards:
+            if c.suit == "spades":
+                player_spades += 1
+        if player_spades > 6:
+            self.points_player += 2
+        else:
+            self.points_computer += 2
+        self.player_collected_cards.clear()
+        self.computer_collected_cards.clear()
+    
+    def check_for_sweep(self):
+        if max(self.points_computer, self.points_player) < 10 and len(self.table) == 0 and len(self.deck.see_deck()):
+            print("sweep")
+            if self.player_picked_last:
+                if self.sweep_computer == 0:
+                    self.sweep_player += 1
+                else:
+                    self.sweep_computer -= 1
+            else:
+                if self.sweep_player == 0:
+                    self.sweep_computer += 1
+                else:
+                    self.sweep_player -= 1
+
+    def check_if_match_ends(self):
+        player_total = self.points_player + self.sweep_player
+        computer_total = self.points_computer + self.sweep_computer
+        if max(player_total, computer_total) >= 16 and player_total != computer_total: # Match ends
+            if player_total > computer_total:
+                print("Player wins with", player_total, "points")
+                self.winner = "player"
+            else:
+                print("Computer wins with", computer_total, "points")
+                self.winner = "computer"
