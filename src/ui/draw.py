@@ -14,6 +14,8 @@ class Draw:
         if self.info.game_stage == 1:
             self.draw_game_buttons()
             self.draw_points()
+            self.draw_info_text_computer()
+            self.draw_info_text_player()
             if len(self.info.match.deck.see_deck()) > 0:
                 self.draw_deck()
             if len(self.info.match.player_hand) > 0:
@@ -22,6 +24,7 @@ class Draw:
                 self.draw_hand(self.info.match.computer_hand)
             if len(self.info.match.table) > 0:
                 self.draw_table()
+            
 
     def draw_points(self):
         font = self.info.font
@@ -84,3 +87,17 @@ class Draw:
                 #    button.text = "play to table"
                 button.text = "Play card"
             button.draw()
+
+    def draw_info_text_computer(self):
+        font = self.info.font
+        text = self.info.match.info_text_computer
+        card_height = self.info.match.deck.get_back()
+        info_text = font.render(text, True, (200, 200, 200))
+        self.info.screen.blit(info_text, ((self.info.screen.get_width() / 2) - info_text.get_width() / 2, card_height.image.get_height() + 10))
+    
+    def draw_info_text_player(self):
+        font = self.info.font
+        text = self.info.match.info_text_player
+        card_height = self.info.match.deck.get_back()
+        info_text = font.render(text, True, (200, 200, 200))
+        self.info.screen.blit(info_text, ((self.info.screen.get_width() / 2) - info_text.get_width() / 2, self.info.screen.get_height() - card_height.image.get_height() - info_text.get_height() - 100))
