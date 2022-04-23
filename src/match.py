@@ -19,16 +19,11 @@ class Match:
         self.points_computer = 0
         self.player_chosen_hand_card = None
         self.player_chosen_table_cards = []
-        self.table_combinations = [] # This must be updated every time table is updated
         self.info_text_computer = ""
         self.info_text_player = ""
 
     def start_round(self):
         self.deal_cards(True)
-
-    def update_table_combinations(self):
-        self.table_combinations = self.calc.find_all_table_combinations(self.table, self.player_collected_cards)
-        #print(self.table_combinations)
 
     def deal_cards(self, start_of_round):
         for i in range(2):
@@ -44,7 +39,6 @@ class Match:
                 self.deal_two_cards_to(self.player_hand)
                 if start_of_round:
                     self.deal_two_cards_to(self.table)
-        self.update_table_combinations()
 
     def deal_two_cards_to(self, target):
         target.append(self.deck.pick_top())
@@ -93,14 +87,12 @@ class Match:
         #self.info_text_player = f"You picked [{picked_cards}] with {self.player_chosen_hand_card.v_hand} of {self.player_chosen_hand_card.suit}"
         self.info_text_player = "Your turn"
         self.player_chosen_hand_card = None
-        self.update_table_combinations()
 
     def play_card_to_table(self):
         self.table.append(self.player_chosen_hand_card)
         self.player_hand.remove(self.player_chosen_hand_card)
         self.info_text_player = "Your turn"
         self.player_chosen_hand_card = None
-        self.update_table_combinations()
 
     def change_turn(self):
         print(len(self.player_hand), len(
@@ -126,7 +118,6 @@ class Match:
         self.table.append(card)
         self.computer_hand.remove(card)
         self.info_text_computer = f"Computer played {card.v_hand} of {card.suit} to table"
-        self.update_table_combinations()
         print("computer played", card.v_hand, card.suit, " to table")
 
     def move_selected_cards_to_computer(self, hand_card, table_cards):
@@ -138,7 +129,7 @@ class Match:
             self.computer_collected_cards.append(card)
             picked_cards += f"{card.v_table} of {card.suit} ,"
         self.info_text_computer = f"Computer picked [{picked_cards}] with {hand_card.v_hand} of {hand_card.suit}"
-        self.update_table_combinations()
+        #self.add_points_to
 
     def print_hands(self):
         print("player col:", [(c.v_hand, c.suit)
