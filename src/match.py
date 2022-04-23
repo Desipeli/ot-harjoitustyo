@@ -51,6 +51,8 @@ class Match:
                 self.deal_two_cards_to(self.player_hand)
                 if start_of_round:
                     self.deal_two_cards_to(self.table)
+        print(self.computer_hand)
+        #self.computer_turn()
 
     def deal_two_cards_to(self, target):
         target.append(self.deck.pick_top())
@@ -73,7 +75,12 @@ class Match:
         return False
 
     def player_action_button(self):
+        if self.winner:
+            return
         if self.round_ongoing:
+            if self.round % 2 == 0 and len(self.computer_hand) == 4:
+                self.change_turn()
+                return
             if self.player_chosen_hand_card == None:
                 self.info_text_player = "Choose a card from hand"
                 return
@@ -83,6 +90,7 @@ class Match:
                 if len(self.player_chosen_table_cards) > 0:
                     return
                 self.play_card_to_table()
+            self.info_text_player = "Computer's turn"
             self.change_turn()
         else:
             self.start_round()
@@ -128,20 +136,26 @@ class Match:
         else:
             self.check_for_sweep()
         if self.turn:
-            self.turn = False
-            begin_timer = time()
-            result = self.cpl.play(self.table, self.computer_hand, self.player_collected_cards)
-            end_timer = time()
-            print("Duration of computers turn:", end_timer-begin_timer, "s")
-            if result:
-                if result[0] == "card_to_table":
-                    self.computer_card_to_table(result[1])
-                elif result[0] == "cards_to_computer":
-                    self.move_selected_cards_to_computer(result[1], result[2])
-            self.change_turn()
+            self.computer_turn()
         else:
-            self.turn = True
-            self.info_text_player = "Your turn"
+            self.player_turn()
+    
+    def player_turn(self):
+        self.turn = True
+        self.info_text_player = "Your turn"
+
+    def computer_turn(self):
+        self.turn = False
+        begin_timer = time()
+        result = self.cpl.play(self.table, self.computer_hand, self.player_collected_cards)
+        end_timer = time()
+        print("Duration of computers turn:", end_timer-begin_timer, "s")
+        if result:
+            if result[0] == "card_to_table":
+                self.computer_card_to_table(result[1])
+            elif result[0] == "cards_to_computer":
+                self.move_selected_cards_to_computer(result[1], result[2])
+        self.change_turn()
 
     def computer_card_to_table(self, card):
         self.table.append(card)
@@ -237,3 +251,6 @@ class Match:
             else:
                 print("Computer wins with", computer_total, "points")
                 self.winner = "computer"
+    
+    def back_to_main_menu(self):
+        self.info.game_stage = 0
