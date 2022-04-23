@@ -25,47 +25,6 @@ class Calcs:
             value += self.card_value(c, p_col)
         return value
 
-    def check_pick():
-        pass
-    
-    #def check_if_pick_is_allowed(self, table, card, checked, index):
-    #    result = False
-    #    print(index, checked, table)
-    #    sub_pick = self.check_if_sub_pick_is_allowed(table, card, checked) # Check current combination
-    #    if sub_pick == 0: # Pick was allowed
-    #        print("Sai pikata")
-    #        for i in range(len(checked)-1, -1, -1):
-    #            if checked[i] == 1:
-    #                print("POP", table, i)
-    #                table.pop(i)
-    #        checked = [0 for x in range(len(table))]
-    #        index = 0
-    #    elif sub_pick == -1: # Not allowed
-    #        return False
-    #    else: # Sub pick allowed
-    #        if len(checked) == 0: # No more cards left to check
-    #            print("LÖYTYI!")
-    #            return True
-    #        else:
-    ##               checked[index] = i
-     #               if index < len(checked) - 1:
-    #                    result = self.check_if_pick_is_allowed(table, card, checked, index + 1)
-    #    return result
-
-    
-    #def check_if_sub_pick_is_allowed(self, sub_pick, card, checked):
-    #    sp_value = 0
-    #    for i in range(len(checked)):
-    #        if checked[i] == 1:
-    #            sp_value += sub_pick[i].v_table
-    #    #print("value subpick", sp_value, " value card", card.v_hand)
-    #    if sp_value == card.v_hand:
-    #        return (0, sp_value)
-    #    if sp_value > card.v_hand:
-    ##        return (-1, sp_value)
-    #    if sp_value < card.v_hand:
-    #        return (1, sp_value)
-
     def sub_pick_sum(self, sub_pick, checked):
         sp_value = 0
         for i in range(len(checked)):
@@ -75,21 +34,21 @@ class Calcs:
 
     def find_all_table_combinations(self, table, p_col):
         checked = [1 for x in range(len(table))]
-        combinations_and_value = {}
+        combinations_and_value = []
         self.table_combinations(0, checked, table, combinations_and_value, p_col)
-        print(combinations_and_value)
+        #print(combinations_and_value)
         return combinations_and_value
 
     def table_combinations(self, index, checked, table, combinations_and_value, p_col):
         if index == len(checked):
             value = 0
-            cards_key = []
+            table_indexes = []
             for c in range(len(checked)):
                 if checked[c] == 1:
                     value += self.card_value(table[c], p_col)
-                    cards_key.append(c)   
-            cards_key = tuple(cards_key)
-            combinations_and_value[cards_key] = value
+                    table_indexes.append(c) 
+            table_indexes = tuple(table_indexes)
+            combinations_and_value.append((value, table_indexes))
         else:
             for i in range(2):
                 checked[index] = i
@@ -146,23 +105,35 @@ class Calcs:
             result = False
         return result
 
-
-if __name__ == "__main__":
-    pass
-    #calc = Calcs()
-    #from card import Card
-    #p_card1 = Card(9,9, "diamonds", "image")
-    #table1 = [
-    #    Card(14, 1, "spades", "image"),
-    #    Card(4, 4, "hearts", "image"),
-    #    Card(4, 4, "spades", "image"),
-    #    Card(5, 5, "hearts", "image")
-    #]
-    #calc.find_combinations([Card(10,10,"spades","image")], table, [])
-    
-    #calc.find_all_table_combinations(table1, [])
-    #book = {}
-    #re = calc.check_if_pick_is_allowed([Card(1, 1, "hearts", "image"), Card(1, 1, "hearts", "image"), Card(7, 7, "hearts", "image"), Card(9, 9, "hearts", "image"), Card(9, 9, "hearts", "image")], p_card1, [0, 1, 0], 0, 0, book)
-    #print(book)
-    #print(len(book))
-    #print(re)
+    def check_best_combination_for_computer(self, combinations, computer_cards, table):
+        print()
+        combinations = sorted(combinations) # Best combination is last (value, [indexes])
+        computer_cards = sorted(computer_cards, key=lambda x: self.card_value(x), reverse=True) # Computer hand cards in order (best first)
+        choice = [] # best choice here
+        choice_hand = None # hand card used for best choice
+        found_one = False
+        for comb in range(len(combinations)):
+            if found_one:
+                break
+            best = combinations.pop()
+            sub_table = []
+            for i in best[1]:
+                sub_table.append(table[i])
+            checked = [0 for x in range(len(sub_table))]
+            for c in computer_cards:
+                result = self.check_if_pick_is_allowed(sub_table, c, checked, 0, 0, {})
+                if result:
+                    found_one = True
+                    choice = sub_table.copy()
+                    choice_hand = c
+                    break
+        print("best choice: ")
+        if found_one:
+            print("hand card: ", choice_hand.v_hand, choice_hand.suit, "table cards: ")
+            for c in choice:
+                print(c.v_table, c.suit, end=" ")
+            print()
+            return choice_hand, choice
+        else:
+            print("no possible combinations")
+        return False

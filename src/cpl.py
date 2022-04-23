@@ -28,12 +28,10 @@ class Cpl:
         else:
             print("hand and table")
             # Check table cards for combinations
-            self.just_some_card()
+            self.decide_what_cards_to_pick()
             m.change_turn()
 
     def choose_which_card_to_table(self):
-        # card = self.info.match.computer_hand[0] # first for now
-        # self.info.match.computer_card_to_table(card)
         m = self.info.match
         p_col = m.player_collected_cards
         weakest_card = m.computer_hand[0]
@@ -42,19 +40,13 @@ class Cpl:
                 weakest_card = card
         self.info.match.computer_card_to_table(weakest_card)
 
-    def just_some_card(self):
-        # For now check if any card matches hand
+    def decide_what_cards_to_pick(self):
         m = self.info.match
-        found_card = False
-        computer_card = None
-        table_card = None
-        for tc in m.table:
-            for cc in m.computer_hand:
-                if cc.v_hand == tc.v_table:
-                    found_card = True
-                    computer_card = cc
-                    table_card = tc
-        if found_card:
-            m.move_selected_cards_to_computer(computer_card, [table_card])
-        else:
+        all_combinations = self.calcs.find_all_table_combinations(m.table, m.player_collected_cards)
+        result = self.calcs.check_best_combination_for_computer(all_combinations, m.computer_hand, m.table)
+        if result:
+            hand_card = result[0]
+            table_cards = result[1]
+            m.move_selected_cards_to_computer(hand_card, table_cards)
+        else: # No possible combinations, play card to table
             self.choose_which_card_to_table()
