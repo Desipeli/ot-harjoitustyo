@@ -31,14 +31,17 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 ## Asennusohjeet
 
+Pelin toimivuus on testattu python versioilla: 3.8.10, 3.10.4, 3.9.7
+
 1. Pura tiedosto haluamaasi hakemistoon
-2. Suorita ``` poetry install ```
+2. Suorita komentorivillä pelin päähakemistossa ``` poetry install ```
 
 ### Jos python ja/tai poetry puuttuu
 ### python 3 asennus windowsille
 
 1. lataa asennuspaketti [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
-2. Asenna ja käynnistä powershell uudestaan jos se oli auki
+2. Asenna oletusasetuksilla. Varmista että pip on valittu
+3. Jos powershell tai komentorivi oli asennuksen aikana auki, kannattaa se sulkea ja avata uudestaan
 
 ### poetryn asennus windowsille
 
