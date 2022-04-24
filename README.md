@@ -7,6 +7,7 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 - [vaatimusmäärittely](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 - [Changelog](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
+- [Asennusohjeet](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md)
 
 ## Laskarit
 
