@@ -110,7 +110,10 @@ class Draw:
                 # else:
                 #    button.text = "play to table"
                 if m.round_ongoing:
-                    button.text = "Play card"
+                    if m.round % 2 == 0 and len(m.computer_hand) == 4:
+                        button.text = "Start round"
+                    else:
+                        button.text = "Play card"
                 else:
                     button.text = "New round"
             button.draw()

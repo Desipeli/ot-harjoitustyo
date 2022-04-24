@@ -26,10 +26,14 @@ class Events:
         elif self.info.game_stage == 1:
             if self.event.button == 1 and self.info.match.turn:
                 #self.check_click_deck()
-                self.check_click_player_hand()
-                self.check_click_table()
-                self.check_click_game_buttons()
-                self.check_click_match_end()
+                if self.info.match.round % 2 == 0 and len(self.info.match.computer_hand) == 4:
+                    self.check_click_game_buttons()
+                    self.check_click_match_end()
+                else:
+                    self.check_click_game_buttons()
+                    self.check_click_player_hand()
+                    self.check_click_table()
+                    self.check_click_match_end()
 
     def check_click_game_buttons(self):
         for b in self.info.game_buttons:
