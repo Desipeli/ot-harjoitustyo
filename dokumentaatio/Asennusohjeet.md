@@ -12,7 +12,7 @@ Pelin toimivuus on testattu python versioilla: 3.8.10, 3.10.4, 3.9.7
 ### Pythonin asennus Windowsille
 
 1. Lataa asennuspaketti [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
-2. Varmista asennuksen aikana että ```` pip ``` on valittu
+2. Varmista asennuksen aikana että ``` pip ``` on valittu
 3. Varmista myös että python lisätään ympäristömuuttujiin
 4. Jos powershell tai cmd oli asennuksen aikana auki, kannattaa se käynnistää uudelleen
 
