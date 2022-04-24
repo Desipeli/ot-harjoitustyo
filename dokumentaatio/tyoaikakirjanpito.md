@@ -6,4 +6,5 @@
 |10.4|3h|Pylintin käyttöönotto, refaktorointia ja pientä hienosäätöä|
 |22.4|6h|Keskitytty enimmäkseen korttiyhdistelmien oikeellisuuden arviointiin|
 |23.4|9h|Jatkettu yhdistelmillä, saatu tietokone pelaamaan melko järkevästi. Refaktorointia. Peliä voi nyt pelata. Ensimmäinen release. Kokeiltu asentaa windowsille|
-|Yht|34h|
+|24.4|0.5h|Korjattu pari bugia|
+|Yht|34.5h|
