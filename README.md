@@ -31,29 +31,7 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 ## Asennusohjeet
 
-Pelin toimivuus on testattu python versioilla: 3.8.10, 3.10.4, 3.9.7
-
-1. Pura tiedosto haluamaasi hakemistoon
-2. Suorita komentorivillä pelin päähakemistossa ``` poetry install ```
-
-### Jos python ja/tai poetry puuttuu
-### python 3 asennus windowsille
-
-1. lataa asennuspaketti [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
-2. Asenna oletusasetuksilla. Varmista että pip on valittu
-3. Jos powershell tai komentorivi oli asennuksen aikana auki, kannattaa se sulkea ja avata uudestaan
-
-### poetryn asennus windowsille
-
-#### tapa 1
-1. suorita ``` pip install poetry ```
-
-#### tapa 2
-
-3. Suorita ``` (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python - ``` Powershellissä (cmd:ssä ei välttämättä toimi)
-4. Lisää ilmoitettu polku ympäristömuuttujaan
-
-Tarkempia ohjeita löytyy esimerkiksi. [https://phoenixnap.com/kb/how-to-install-python-3-windows](https://phoenixnap.com/kb/how-to-install-python-3-windows)
+[https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md)
 
 ## Käyttö
 
