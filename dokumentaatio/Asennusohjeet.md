@@ -7,7 +7,7 @@ Pelin toimivuus on testattu python versioilla: 3.8.10, 3.10.4, 3.9.7
 - Pura tiedostot haluamaasi hakemistoon
 - siirry komentorivillä pelin päähakemistoon ja suorita ``` poetry install ```
 
-## Jos koneellasi ei ole pythonia ja tai poetrya
+## Jos koneellasi ei ole pythonia ja/tai poetrya
 
 ### Pythonin asennus Windowsille
 
