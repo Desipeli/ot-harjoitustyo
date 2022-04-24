@@ -4,7 +4,7 @@ Pelin toimivuus on testattu python versioilla: 3.8.10, 3.10.4, 3.9.7
 
 ## Pelin asennus
 
-- Lataa [uusin julkaisu](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5)
+- Lataa [uusin julkaisu](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5_v2)
 - Pura tiedostot haluamaasi hakemistoon
 - siirry komentorivillä pelin päähakemistoon ja suorita ``` poetry install ```
 
