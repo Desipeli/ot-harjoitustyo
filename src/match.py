@@ -229,6 +229,10 @@ class Match:
             self.points_player += 2
         else:
             self.points_computer += 2
+        self.points_computer += self.sweep_computer
+        self.points_player += self.sweep_player
+        self.sweep_computer = 0
+        self.sweep_player = 0
         self.player_collected_cards.clear()
         self.computer_collected_cards.clear()
 
