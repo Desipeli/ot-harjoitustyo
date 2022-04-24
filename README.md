@@ -39,7 +39,9 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 1. Siirry komentorivillä pelin päähakemistoon
 2. Suorita ``` poetry run invoke start ```
-3. Pelaa!
+4. Pelaa!
+
+Pelin säännöt löytyvät [täältä](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 ### Pelaaminen windowsilla
 1. Siirry powershellillä pelin päähakemistoon
