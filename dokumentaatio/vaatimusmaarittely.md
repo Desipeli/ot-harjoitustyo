@@ -20,6 +20,7 @@ Harjoitustyö on tietokonetta vastaan pelattava korttipeli kasino.
 
 ## Puuttuvat toiminnallisuudet
  
+ - Tietokone voisi arvioida tarkemmin pöydälle pelattavaa korttia
  - Voittotilastoja ei vielä tallenneta mihinkään
  - Asetukset-näkymä, jossa voi valita esimerkiksi minkä näköistä korttipakkaa käytetään
  - UI:n hiomista, ehkä yksinkertainen animaation korttien siirtymisiin
