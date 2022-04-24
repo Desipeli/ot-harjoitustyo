@@ -28,6 +28,7 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 ### Viikko 5
 
 - Ensimmäinen julkaisu [https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5)
+- Korjattu julkaisu viikko 5:lle: [https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5_v2](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5_v2)
 
 ## Asennusohjeet
 
