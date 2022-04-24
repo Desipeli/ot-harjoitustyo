@@ -34,6 +34,7 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 1. Pura tiedosto haluamaasi hakemistoon
 2. Suorita ``` poetry install ```
 
+### Jos python ja/tai poetry puuttuu
 ### python 3 asennus windowsille
 
 1. lataa asennuspaketti [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
