@@ -42,8 +42,15 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 ### poetryn asennus windowsille
 
-1. Suorita ``` (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python - ``` Powershellissä (cmd:ssä ei välttämättä toimi)
-2. Lisää ilmoitettu polku ympäristömuuttujaan
+#### tapa 1
+1. suorita ``` pip install poetry ```
+
+#### tapa 2
+
+3. Suorita ``` (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python - ``` Powershellissä (cmd:ssä ei välttämättä toimi)
+4. Lisää ilmoitettu polku ympäristömuuttujaan
+
+Tarkempia ohjeita löytyy esimerkiksi. [https://phoenixnap.com/kb/how-to-install-python-3-windows](https://phoenixnap.com/kb/how-to-install-python-3-windows)
 
 ## Käyttö
 
