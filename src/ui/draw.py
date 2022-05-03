@@ -1,4 +1,5 @@
 from ui.match_ended import MatchEnded
+from ui.log_window import LogWindow
 
 
 class Draw:
@@ -6,13 +7,16 @@ class Draw:
         self.info = info
 
     def draw(self):
+        self.log_window()
         # draw menu buttons
         if self.info.game_stage == 0:
             for b in self.info.menu_buttons:
+                if self.info.match == None and b.id == 6:
+                    continue
                 b.draw()
 
         # draw deck only if cards left
-        if self.info.game_stage == 1:
+        elif self.info.game_stage == 1:
             self.draw_game_buttons()
             self.draw_points()
             self.draw_sweeps()
@@ -29,6 +33,9 @@ class Draw:
                 self.draw_table()
             if self.info.match.winner:
                 self.match_ended()
+
+        elif self.info.game_stage == 4:
+            self.draw_settings_buttons()
 
     def draw_points(self):
         font = self.info.font
@@ -82,12 +89,17 @@ class Draw:
                 y = self.info.screen.get_height()-self.info.match.deck.get_back().image.get_height()
                 if c == self.info.match.player_chosen_hand_card:    # Change y for chosen card
                     y -= c.image.get_height()/3
+                pos = (x, y)
+                self.draw_card(c, pos)
             else:
                 x = (self.info.screen.get_width(
                 )-len(self.info.match.computer_hand)*card_width)/2 + i*card_width
                 y = 0
-            pos = (x, y)
-            self.draw_card(c, pos)
+                pos = (x, y)
+                if self.info.settings.open_cards:
+                    self.draw_card(c, pos)
+                else:
+                    self.draw_card(self.info.settings.backside, pos)
             c.pos = pos
             i += 1
 
@@ -104,7 +116,7 @@ class Draw:
             if button.id == 3:
                 cw = self.info.match.deck.get_back().image.get_width()
                 button.pos = (self.info.screen.get_width(
-                )/2 - (len(self.info.match.player_hand) * cw / 2) - cw, button.pos[1])
+                )/2 + (len(self.info.match.player_hand) * cw / 2) + cw, button.pos[1])
                 # if m.check_if_player_can_pick_cards():
                 #button.text = "pick cards"
                 # else:
@@ -117,6 +129,16 @@ class Draw:
                 else:
                     button.text = "New round"
             button.draw()
+
+    def draw_settings_buttons(self):
+        info = self.info
+        for b in info.settings_buttons:
+            if b.id == 8:
+                if self.info.settings.open_cards:
+                    b.text = "open cards"
+                else:
+                    b.text = "hidden cards"
+            b.draw()
 
     def draw_info_text_computer(self):
         font = self.info.font
@@ -140,3 +162,6 @@ class Draw:
         m_e.draw()
         for b in self.info.match_end_buttons:
             b.draw()
+    
+    def log_window(self):
+        self.info.game_log.draw(self.info.game_log_text)
