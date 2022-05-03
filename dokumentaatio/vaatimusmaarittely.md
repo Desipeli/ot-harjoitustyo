@@ -17,12 +17,15 @@ Harjoitustyö on tietokonetta vastaan pelattava korttipeli kasino.
 - Peli päättyy kun toisella on vähintään 16 pistettä, käsikortit on pelattu eikä ole tasapelitilannetta.
 - Peli toimii alla olevien sääntöjä noudattaen
 - Peliä voi pelata ainoastaan hiirellä
+- Pelissä on loki-ikkuna, joka auttaa hahmottamaan tietokonepelaajan siirtoja
+- Päävalikosta pääsee asetuksiin
+- Pelin voi keskeyttää ja siirtyä päävalikkoon
 
 ## Puuttuvat toiminnallisuudet
  
  - Tietokone voisi arvioida tarkemmin pöydälle pelattavaa korttia
  - Voittotilastoja ei vielä tallenneta mihinkään
- - Asetukset-näkymä, jossa voi valita esimerkiksi minkä näköistä korttipakkaa käytetään
+ - Asetukset-näkymään lisää valintoja
  - UI:n hiomista, ehkä yksinkertainen animaation korttien siirtymisiin
 
 ## Jos aikaa riittää
