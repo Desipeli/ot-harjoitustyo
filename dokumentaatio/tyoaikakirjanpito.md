@@ -7,4 +7,5 @@
 |22.4|6h|Keskitytty enimmäkseen korttiyhdistelmien oikeellisuuden arviointiin|
 |23.4|9h|Jatkettu yhdistelmillä, saatu tietokone pelaamaan melko järkevästi. Refaktorointia. Peliä voi nyt pelata. Ensimmäinen release. Kokeiltu asentaa windowsille|
 |24.4|0.5h|Korjattu pari bugia|
-|Yht|34.5h|
+|3.5|7h|Docstring, Lisätty loki tietokoneen siirroille, asetukset-näkymä|
+|Yht|41.5h|
