@@ -4,3 +4,10 @@
 - Tietokone osaa valita järkevän korttiyhdistelmän pöydältä. On kuitenkin paikoitellen hidas, optimoidaan myöhemmin
 - Eriytetty asioita omiin moduuleihin ja muutettu niiden osan rakennetta
 - Peli päättyy kun toinen pelaajista saa 16 pistettä ja käsikortit on pelattu
+
+## Viikko 6
+
+- Kerrotaan pelaajalle minkä siirron tietokone teki myös tekstimuodossa selkeyden vuoksi
+- Korjattu pistelaskubugi
+- Lisätty docstring
+- Luotu asetukset-näkymä. Tällä hetkellä ainoa valinta on tietokoneen korttien piilottaminen/näyttäminen
