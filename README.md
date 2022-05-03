@@ -7,6 +7,7 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 - [vaatimusmäärittely](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 - [Changelog](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
+- [Asennusohjeet](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md)
 
 ## Laskarit
 
@@ -28,32 +29,11 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 ### Viikko 5
 
 - Ensimmäinen julkaisu [https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5)
+- Korjattu julkaisu viikko 5:lle: [https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5_v2](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko5_v2)
 
 ## Asennusohjeet
 
-Pelin toimivuus on testattu python versioilla: 3.8.10, 3.10.4, 3.9.7
-
-1. Pura tiedosto haluamaasi hakemistoon
-2. Suorita komentorivillä pelin päähakemistossa ``` poetry install ```
-
-### Jos python ja/tai poetry puuttuu
-### python 3 asennus windowsille
-
-1. lataa asennuspaketti [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
-2. Asenna oletusasetuksilla. Varmista että pip on valittu
-3. Jos powershell tai komentorivi oli asennuksen aikana auki, kannattaa se sulkea ja avata uudestaan
-
-### poetryn asennus windowsille
-
-#### tapa 1
-1. suorita ``` pip install poetry ```
-
-#### tapa 2
-
-3. Suorita ``` (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python - ``` Powershellissä (cmd:ssä ei välttämättä toimi)
-4. Lisää ilmoitettu polku ympäristömuuttujaan
-
-Tarkempia ohjeita löytyy esimerkiksi. [https://phoenixnap.com/kb/how-to-install-python-3-windows](https://phoenixnap.com/kb/how-to-install-python-3-windows)
+[https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md)
 
 ## Käyttö
 
@@ -61,12 +41,13 @@ Tarkempia ohjeita löytyy esimerkiksi. [https://phoenixnap.com/kb/how-to-install
 
 1. Siirry komentorivillä pelin päähakemistoon
 2. Suorita ``` poetry run invoke start ```
-3. Pelaa!
+4. Pelaa!
+
+Pelin säännöt löytyvät [täältä](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 ### Pelaaminen windowsilla
 1. Siirry powershellillä pelin päähakemistoon
-2. suorita ``` poetry shell```
-3. suorita ``` python .\src\index.py ```
+2. suorita ``` poetry run python .\src\index.py ```
 
 Voit myös muokata task.py tiedoston start-funktion muotoon ```ctx.run("python src/index.py", pty=False)```, jonka jälkeen invoke-komento saattaa toimia.
 Jos peli-ikkuna venyy liian suureksi, kannattaa tarkistaa näytön asetuksista skaalaus
