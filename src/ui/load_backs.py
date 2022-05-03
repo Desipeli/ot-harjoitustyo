@@ -4,6 +4,15 @@ from card import Card
 
 
 def load_backs(path="src/images/back/"):
+    """ Load backsides for the cards
+
+        Args:
+            path: Directory for backsides
+
+        Returns:
+            List of images
+    """
+
     backs = []
     scale = (103, 150)
     for file in os.listdir(path):

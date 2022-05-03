@@ -5,8 +5,15 @@ from deck import Deck
 
 
 class Events:
+    """ This class handles pygame events. """
 
     def check_event(self, event, info):
+        """ Check what kind of event occurred.
+
+            Args:
+                event: pygame event
+        """
+
         self.info = info
         self.event = event
         if self.event.type == pygame.MOUSEBUTTONDOWN:
@@ -16,12 +23,21 @@ class Events:
             sys.exit()
 
     def check_clicks(self):
-        # Menu
+        """ Check mouse click events. """
+
+        # Menu MOVE TO SEPARETE FUNCTION!
         if self.info.game_stage == 0 and self.event.button == 1:
             for b in self.info.menu_buttons:
                 if self.check_button(b):
-                    if b.text == "Play":
+                    if b.id == 0:
                         self.start_match()
+                    elif b.id == 2:
+                        pygame.quit()
+                        sys.exit()
+                    elif b.id == 6:
+                        self.info.game_stage = 1
+                    elif b.id == 7:
+                        self.info.game_stage = 4
         # Game tabel
         elif self.info.game_stage == 1:
             if self.event.button == 1 and self.info.match.turn:
@@ -34,34 +50,62 @@ class Events:
                     self.check_click_player_hand()
                     self.check_click_table()
                     self.check_click_match_end()
+        elif self.info.game_stage == 4:
+            self.check_click_settings_buttons()
+
+    def check_click_settings_buttons(self):
+        for b in self.info.settings_buttons:
+            if self.check_button(b):
+                if b.id == 9:
+                    self.info.game_stage = 0
+                elif b.id == 8:
+                    self.info.settings.open_cards_change()
 
     def check_click_game_buttons(self):
+        """ Check if any match buttons are clicked. """
+
         for b in self.info.game_buttons:
             if self.check_button(b):
                 if b.id == 3:
                     self.info.match.player_action_button()
+                if b.id == 5:
+                    self.info.game_stage = 0
+                    # Match object remains, so match can be continued
 
     def check_click_table(self):
+        """ Check if table card is clicked. """
+
         match = self.info.match
+        if not match.turn:
+            return
         for card in match.table:
             if self.check_click_surface(card):
-                print("pöytä", [x.v_table for x in match.table])
-                print("Pöytä valittu", card.v_table, [
-                      x.v_table for x in match.player_chosen_table_cards])
                 if card not in match.player_chosen_table_cards:
                     match.player_chosen_table_cards.append(card)
                 else:
                     match.player_chosen_table_cards.remove(card)
+                print("pöytä", [x.v_table for x in match.table])
+                print("Pöytä valittu", card.v_table, [
+                    x.v_table for x in match.player_chosen_table_cards])
 
     def check_click_player_hand(self):
+        """ Check if player hand card is clicked. """
+
         match = self.info.match
+        if not match.turn:
+            return
         for card in match.player_hand:
-            if self.check_click_surface(card):  # Player chose a card in hand
+            if self.check_click_surface(card):
                 print(card.v_hand)
                 match.player_chosen_hand_card = card
 
-    # This can be used to check if player clicked a card
     def check_click_surface(self, s):
+        """ Check if surface (for example image of a card) is clicked.
+
+            Args:
+                s: surface
+        """
+
         p = self.event.pos
         if p[0] >= s.pos[0] and p[0] <= s.pos[0] + s.image.get_width():
             if p[1] >= s.pos[1] and p[1] <= s.pos[1] + s.image.get_height():
@@ -69,28 +113,20 @@ class Events:
         return False
 
     def check_button(self, button):
+        """ Check if button is clicked.
+
+            Args:
+                button: Button
+        """
+
         if self.event.pos[0] >= button.center[0] and self.event.pos[0] <= button.center[0]+button.size[0]:
             if self.event.pos[1] >= button.center[1] and self.event.pos[1] <= button.center[1]+button.size[1]:
                 return True
         return False
 
-    # This is for test purpose only
-    def check_click_deck(self):
-        if self.event.pos[0] >= self.info.deck_pos[0] and self.event.pos[0] <= self.info.deck_pos[0] + self.info.match.deck.get_back().image.get_width():
-            if self.event.pos[1] >= self.info.deck_pos[1] and self.event.pos[1] <= self.info.deck_pos[1] + self.info.match.deck.get_back().image.get_height():
-                deck = self.info.match.deck
-                card = deck.pick_top()
-                if card:
-                    print(card.v_hand, card.suit)
-                    self.info.match.player_hand.append(card)
-                card = deck.pick_top()
-                if card:
-                    self.info.match.computer_hand.append(card)
-                card = deck.pick_top()
-                if card:
-                    self.info.match.table.append(card)
-
     def start_match(self):
+        """ A new match object is created and first round started. """
+
         print("Match started!")
         match = Match(self.info)
         match.deck = Deck(self.info.cards.copy(), self.info.backs[0])
@@ -99,6 +135,8 @@ class Events:
         match.start_round()
 
     def check_click_match_end(self):
+        """ Checks if back to main menu button is pressed when game is over. """
+
         for b in self.info.match_end_buttons:
             if self.check_button(b):
                 if b.id == 4 and self.info.match.winner:

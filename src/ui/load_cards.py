@@ -4,6 +4,16 @@ from card import Card
 
 
 def load_cards(path="src/images/cards/"):
+    """ Loads front side of playing cards
+    and create card objects with proper values based on filenames
+
+        Args:
+            path: Direcory of where the images are
+
+        returns:
+            List of card objects
+    """
+
     cards = []
     scale = (103, 150)
     for file in os.listdir(path):
