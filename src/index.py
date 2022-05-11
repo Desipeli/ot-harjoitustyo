@@ -19,7 +19,7 @@ class Game:
         """
 
         pygame.init()
-        # 0 = menu, 1 = game table, 2 =enter highscore, 3 = show highscore, 4 = settings
+        # 0 = menu, 1 = game table, 3 = show statistics, 4 = settings
         self.game_stage = 0
         self.screen = pygame.display.set_mode([1366, 768])
         self.font = pygame.font.SysFont("Corbel", 35)
@@ -52,6 +52,8 @@ class Game:
         b10 = Button(9, self.screen, "Menu", (100, 60),
                     (self.screen.get_width() -50, self.screen.get_height() - 30))
         self.settings_buttons = [b9, b10]
+        # statistics buttons
+        self.stats_buttons = [b10]
 
         self.info = info.Info()
         self.info.screen = self.screen
@@ -67,6 +69,7 @@ class Game:
         self.info.game_buttons = self.game_buttons
         self.info.settings_buttons = self.settings_buttons
         self.info.match_end_buttons = self.match_end_buttons
+        self.info.stats_buttons = self.stats_buttons
         self.info.game_log = LogWindow(self.screen)
 
         self.loop = Loop(self.info)
