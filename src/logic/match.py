@@ -1,6 +1,6 @@
 from time import time
-from cpl import Cpl
-from calc import Calcs
+from logic.cpl import Cpl
+from logic.calc import Calcs
 from database_actions import update_wins
 
 
