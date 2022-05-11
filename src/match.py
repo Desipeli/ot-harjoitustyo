@@ -1,6 +1,7 @@
 from time import time
 from cpl import Cpl
 from calc import Calcs
+from database_actions import update_wins
 
 
 class Match:
@@ -159,7 +160,6 @@ class Match:
 
         if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0:
             self.check_if_match_ends()
-            print("Deal")
             self.deal_cards(False)
         elif len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) == 0:
             self.end_cards_to()
@@ -338,6 +338,7 @@ class Match:
         player_total = self.points_player + self.sweep_player
         computer_total = self.points_computer + self.sweep_computer
         if max(player_total, computer_total) >= 16 and player_total != computer_total:  # Match ends
+            saved_to_db = update_wins(player_total, computer_total)
             if player_total > computer_total:
                 print("Player wins with", player_total, "points")
                 self.info.game_log_text.append(f"Player wins with {player_total}")
@@ -346,6 +347,9 @@ class Match:
                 print("Computer wins with", computer_total, "points")
                 self.info.game_log_text.append(f"Computer wins with {computer_total}")
                 self.winner = "computer"
+            if not saved_to_db:
+                self.info.game_log_text.append("Could not save points to database")
+                self.info.game_log_text.append("Did you run poetry run invoke build?")
 
     def back_to_main_menu(self):
         self.info.game_stage = 0
