@@ -29,9 +29,9 @@ class Events:
         # Menu
         if self.info.game_stage == 0 and self.event.button == 1:
             self.check_click_menu_buttons()
-        # Highscore/statistics
+        # statistics
         elif self.info.game_stage == 3 and self.event.button == 1:
-            self.check_click_highscore()
+            self.check_click_stats()
         # Game tabel
         elif self.info.game_stage == 1:
             if self.event.button == 1 and self.info.match.turn:
@@ -81,10 +81,10 @@ class Events:
                     self.info.game_stage = 0
                     # Match object remains, so match can be continued
     
-    def check_click_highscore(self):
-        """ Check if any buttons in highscore view are clicked """
+    def check_click_stats(self):
+        """ Check if any buttons in stats view are clicked """
 
-        for b in self.info.highscore_buttons:
+        for b in self.info.stats_buttons:
             if self.check_button(b):
                 if b.id == 9:
                     self.info.game_stage = 0
