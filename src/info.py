@@ -14,6 +14,7 @@ class Info:
         self.game_buttons = []
         self.match_end_buttons = []
         self.settings_buttons = []
+        self.stats_buttons = []
         self.deck_pos = (0, 0)
         self.match = None
         self.game_log_text = ["Welcome to Kasino!", "Press play to start a match"]
