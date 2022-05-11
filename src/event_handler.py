@@ -1,5 +1,6 @@
 import sys
 import pygame
+import database_actions
 from match import Match
 from deck import Deck
 
@@ -23,21 +24,14 @@ class Events:
             sys.exit()
 
     def check_clicks(self):
-        """ Check mouse click events. """
+        """ Check mouse click events for left mouse button. """
 
-        # Menu MOVE TO SEPARETE FUNCTION!
+        # Menu
         if self.info.game_stage == 0 and self.event.button == 1:
-            for b in self.info.menu_buttons:
-                if self.check_button(b):
-                    if b.id == 0:
-                        self.start_match()
-                    elif b.id == 2:
-                        pygame.quit()
-                        sys.exit()
-                    elif b.id == 6:
-                        self.info.game_stage = 1
-                    elif b.id == 7:
-                        self.info.game_stage = 4
+            self.check_click_menu_buttons()
+        # Highscore/statistics
+        elif self.info.game_stage == 3 and self.event.button == 1:
+            self.check_click_highscore()
         # Game tabel
         elif self.info.game_stage == 1:
             if self.event.button == 1 and self.info.match.turn:
@@ -60,6 +54,21 @@ class Events:
                     self.info.game_stage = 0
                 elif b.id == 8:
                     self.info.settings.open_cards_change()
+    
+    def check_click_menu_buttons(self):
+        for b in self.info.menu_buttons:
+            if self.check_button(b):
+                if b.id == 0:
+                    self.start_match()
+                elif b.id == 2:
+                    pygame.quit()
+                    sys.exit()
+                elif b.id == 1:
+                    self.info.game_stage = 3
+                elif b.id == 6:
+                    self.info.game_stage = 1
+                elif b.id == 7:
+                    self.info.game_stage = 4
 
     def check_click_game_buttons(self):
         """ Check if any match buttons are clicked. """
@@ -71,6 +80,14 @@ class Events:
                 if b.id == 5:
                     self.info.game_stage = 0
                     # Match object remains, so match can be continued
+    
+    def check_click_highscore(self):
+        """ Check if any buttons in highscore view are clicked """
+
+        for b in self.info.highscore_buttons:
+            if self.check_button(b):
+                if b.id == 9:
+                    self.info.game_stage = 0
 
     def check_click_table(self):
         """ Check if table card is clicked. """
