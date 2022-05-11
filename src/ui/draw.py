@@ -1,5 +1,6 @@
 from ui.match_ended import MatchEnded
 from ui.log_window import LogWindow
+from database_actions import read_wins
 
 
 class Draw:
@@ -18,7 +19,6 @@ class Draw:
         # draw deck only if cards left
         elif self.info.game_stage == 1:
             self.draw_game_buttons()
-            self.draw_points()
             self.draw_sweeps()
             self.draw_info_text_computer()
             self.draw_info_text_player()
@@ -33,9 +33,27 @@ class Draw:
                 self.draw_table()
             if self.info.match.winner:
                 self.match_ended()
-
+        elif self.info.game_stage == 3:
+            self.draw_stats_buttons()
+            self.draw_stats()
         elif self.info.game_stage == 4:
             self.draw_settings_buttons()
+
+    def draw_stats_buttons(self):
+        for b in self.info.stats_buttons:
+            b.draw()
+
+    def draw_stats(self):
+        wins, allgames = read_wins()
+        font = self.info.font
+        wins_games_text = font.render(f"Player won / all games", True, (200, 200, 200))
+        points_text = font.render(f"{wins}/{allgames}", True, (200, 200, 200))
+        screen_width = self.info.screen.get_width()
+        screen_height = self.info.screen.get_height()
+        self.info.screen.blit(wins_games_text, (
+            screen_width/2-wins_games_text.get_width()/2, screen_height/2-wins_games_text.get_height()/2))
+        self.info.screen.blit(points_text, (
+            screen_width/2-points_text.get_width()/2, screen_height/2-points_text.get_height()/2 + wins_games_text.get_height()+ 10))
 
     def draw_points(self):
         font = self.info.font
