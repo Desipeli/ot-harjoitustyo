@@ -6,6 +6,10 @@ def start(ctx):
     ctx.run("python3 src/index.py", pty=True)
 
 @task
+def start_windows(ctx):
+    ctx.run("python .src/index.py", pty=False)
+
+@task
 def test(ctx):
     ctx.run("pytest src", pty=True)
 
@@ -24,3 +28,11 @@ def format(ctx):
 @task
 def lint(ctx):
     ctx.run("pylint src", pty=True)
+
+@task
+def build(ctx):
+    ctx.run("python3 src/build.py", pty=True)
+
+@task
+def build_windows(ctx):
+    ctx.run("python .src/build.py", pty=False)
