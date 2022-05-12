@@ -5,7 +5,7 @@ class Card:
 
     def __init__(self, v_hand, v_table, suit, image):
         """ Constructor
-        
+
             Args:
                 v_hand: Hand value of this card
                 v_table: Table value of this card
