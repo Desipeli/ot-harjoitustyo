@@ -8,8 +8,8 @@ Pelin toimivuus on testattu python versioilla: 3.8.10, 3.10.4, 3.9.7
 - Pura tiedostot haluamaasi hakemistoon
 - siirry komentorivillä pelin päähakemistoon ja suorita ``` poetry install ```
 - Luo tietokanta pelille:
-- Linux: Pysy edelleen pelin päähakemistossa ja suorita ``` poetry run invoke build ```
-- Windows: Pysy edelleen pelin päähakemistossa ja suorita ``` poetry run invoke build_windows ```
+  - Linux: Pysy edelleen pelin päähakemistossa ja suorita ``` poetry run invoke build ```
+  - Windows: Pysy edelleen pelin päähakemistossa ja suorita ``` poetry run invoke build_windows ```
 
 ## Jos koneellasi ei ole pythonia ja/tai poetrya
 
