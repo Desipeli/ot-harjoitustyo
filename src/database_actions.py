@@ -17,6 +17,7 @@ def read_wins():
         print(e)
         return None
 
+
 def update_wins(player_points, computer_points):
     try:
         conn = get_conn()
