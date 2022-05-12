@@ -25,11 +25,17 @@ Jos peli-ikkuna venyy liian suureksi, kannattaa tarkistaa näytön asetuksista s
 - Päävalikosta voi aloittaa uuden pelin painamalla ``` Play ``` nappia.
 - Pelaajan käsikortit näkyvät ruudun alareunassa keskellä. Valittu käsikortti on hieman korkeammalla kuin muut. Kortti valitaan klikkaamalla sitä.
 - Pöytäkortit näkyvä ruudun keskiosassa. Valitut pöytäkortit ovat hieman korkeammalla muihin verrattuna. Pöytäkortteja valitaan tai valinta poistetaan klikkaamalla korttia.
-- Pelaaja tekee kaikki toimenpiteet omien korttien oikealla puolella olevalla napilla.
+- Pelaaja hyväksyy kaikki toimenpiteet omien korttien oikealla puolella olevalla napilla.
     - Jos yhtäkään pöytäkorttia ei ole valittu, pelataan valittu käsikortti pöytään ja vuoro siirtyy tietokoneelle.
     - Jos pöytäkortteja on valittu, ja ne voidaan nostaa valitulla käsikortilla, saa pelaaja ne omaan pinoonsa ja vuoro siirtyy tietokoneelle.
     - Jos pöytäkortteja ei voi nostaa, tulee pöytäkorttien alle virheilmoitus eikä vuoro vaihdu.
+    - Tietokonnen aloittamalla kierroksella pelaajan on painettava nappia ennen kuin kierros alkaa.
 - Tietokoneen kortit näkyvät ruudun yläreunassa keskellä. Ne ovat oletuksena käännettynä väärin päin, mutta asetuksista voi säätää ne näkyviin.
+
+## Statistiikka ja asetukset
+
+- Päävalikosta pääsee muuttamaan pelin asetuksia painamalla ``` Settings ``` nappia. Toistaiseksi vain tietokoneen korttien piilottaminen/näyttäminen löytyy täältä.
+-  Päävalikosta pääsee myös katsomaan pelitilastoa. ``` Stats ``` nappi ohja näkymään, josta selviää kuinka monta peliä pelaaja on voittanut tietokonetta vastaan.
 
 ## Säännöt
 
