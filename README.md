@@ -43,4 +43,6 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 [https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 
+## Muuta
 
+Korttien kuvat: [http://byronknoll.blogspot.com/2011/03/vector-playing-cards.html](http://byronknoll.blogspot.com/2011/03/vector-playing-cards.html)
