@@ -32,6 +32,8 @@ Jos peli-ikkuna venyy liian suureksi, kannattaa tarkistaa näytön asetuksista s
     - Tietokonnen aloittamalla kierroksella pelaajan on painettava nappia ennen kuin kierros alkaa.
 - Tietokoneen kortit näkyvät ruudun yläreunassa keskellä. Ne ovat oletuksena käännettynä väärin päin, mutta asetuksista voi säätää ne näkyviin.
 
+- Jos pelin aikana palaa päävalikkoon, voi peliä jatkaa painamalla valikosta ``` Continue ``` nappia
+
 ## Statistiikka ja asetukset
 
 - Päävalikosta pääsee muuttamaan pelin asetuksia painamalla ``` Settings ``` nappia. Toistaiseksi vain tietokoneen korttien piilottaminen/näyttäminen löytyy täältä.
