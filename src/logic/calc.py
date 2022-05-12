@@ -2,7 +2,7 @@
 
 class Calcs:
     """ Class that has different functions to check value of cards and if they can be picked """
-    
+
     def __init__(self) -> None:
         pass
 
@@ -12,7 +12,7 @@ class Calcs:
         Args:
             card: Card that is checked
             p_col: List of cards that player has collected
-        
+
         Returns:
             Value(weight) of card
         """
@@ -36,7 +36,7 @@ class Calcs:
             Args:
                 sub_pick: A set of table cards
                 checked: List of indexes of the set of table cards. 1 = selected
-            
+
             Returns:
                 Integer, that is sum of table values of cards
         """
@@ -53,7 +53,7 @@ class Calcs:
             Args:
                 table: List of cards on the table
                 p_col: Cards that player has collected
-            
+
             Returns:
                 A list of tuples (value(weight), combination as indexes of table cards)
         """
@@ -67,7 +67,7 @@ class Calcs:
 
     def table_combinations(self, index, checked, table, combinations_and_value, p_col):
         """ Find different combinations from table combinations and add value to them for computer player
-        
+
             Args: 
                 index: which card is handled
                 checked: List of table card indexes. 1 = card is included 0 = not included
@@ -76,7 +76,7 @@ class Calcs:
                     (value, list of table card indexes)
                 p_col: Cards collected by the player
         """
-        
+
         if index == len(checked):
             value = 0
             table_indexes = []
@@ -94,7 +94,7 @@ class Calcs:
 
     def check_if_pick_is_allowed(self, table, card, checked, index, current_sum, book):
         """ Checks if selected combination can be picked with selected card
-        
+
             Args:
                 table: List of table cards
                 card: Card that is used to pick the combination
@@ -102,7 +102,7 @@ class Calcs:
                 index: Current index of table cards
                 current_sum: current sum of table values of table cards
                 book: Used to check if combination is already checked
-            
+
             Returns:
                 True, if combination can be picked with selected card
                 False if combination can not be picked with selected card
@@ -111,7 +111,6 @@ class Calcs:
             sub_pick = self.sub_pick_sum(table, checked)
             current_sum += sub_pick
             if current_sum > card.v_hand:
-                #print(current_sum, "Liian iso summa")
                 return False
             else:  # Pick allowed or not enough
                 new_table = table.copy()
@@ -121,11 +120,9 @@ class Calcs:
                 new_checked = [0 for x in range(len(new_table))]
                 if current_sum == card.v_hand:
                     if len(new_table) == 0:
-                        # print("löytyi!!!")
                         return True
                     else:
                         if len(new_table) == 0:
-                            #print("Ei riitä kortit enää")
                             return False
                 if sub_pick == card.v_hand:
                     if tuple(new_table) in book:
@@ -168,12 +165,12 @@ class Calcs:
                 combinations: combinations and their weight (weight, [combination])
                 computer_cards: List of cards in computer player's hand
                 table: List of table cards
-            
+
             Returns:
                 Tuple (list of chosen card, card that is used to pick them)
                 False: Could not find any combination
         """
-        
+
         print()
         # Best combination is last (value, [indexes])
         combinations = sorted(combinations)
