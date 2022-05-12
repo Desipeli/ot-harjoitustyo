@@ -14,6 +14,7 @@ def drop_tables(conn):
     """)
     conn.commit()
 
+
 def create_tables(conn):
     """ Create tables for database
 
@@ -27,6 +28,7 @@ def create_tables(conn):
     """)
 
     conn.commit()
+
 
 def initialize_database():
     conn = get_conn()
