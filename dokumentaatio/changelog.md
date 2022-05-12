@@ -17,4 +17,4 @@
 - Korjattu pelin jäädyttävä bugi
 - Luotu erilliset käyttöohjeet
 - Lisätty yksinkertainen tietokanta, johon tallennetaan pelien pisteet
-- Lisätty ```` Stats ``` näkymä, joka näyttää voitetut pelit/kaikki pelit
+- Lisätty ``` Stats ``` näkymä, joka näyttää voitetut pelit/kaikki pelit
