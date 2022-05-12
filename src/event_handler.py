@@ -1,8 +1,7 @@
 import sys
 import pygame
-import database_actions
-from match import Match
-from deck import Deck
+from logic.match import Match
+from logic.deck import Deck
 
 
 class Events:
@@ -35,7 +34,7 @@ class Events:
         # Game tabel
         elif self.info.game_stage == 1:
             if self.event.button == 1 and self.info.match.turn:
-                #self.check_click_deck()
+                # self.check_click_deck()
                 if self.info.match.round % 2 == 0 and len(self.info.match.computer_hand) == 4:
                     self.check_click_game_buttons()
                     self.check_click_match_end()
@@ -54,7 +53,7 @@ class Events:
                     self.info.game_stage = 0
                 elif b.id == 8:
                     self.info.settings.open_cards_change()
-    
+
     def check_click_menu_buttons(self):
         for b in self.info.menu_buttons:
             if self.check_button(b):
@@ -80,7 +79,7 @@ class Events:
                 if b.id == 5:
                     self.info.game_stage = 0
                     # Match object remains, so match can be continued
-    
+
     def check_click_stats(self):
         """ Check if any buttons in stats view are clicked """
 
