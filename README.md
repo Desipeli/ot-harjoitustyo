@@ -39,27 +39,8 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 [https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md)
 
-## Käyttö
+## Käyttöohjeet
 
-### Pelaaminen
-
-1. Siirry komentorivillä pelin päähakemistoon
-2. Suorita ``` poetry run invoke start ```
-4. Pelaa!
-
-Pelin säännöt löytyvät [täältä](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
-
-### Pelaaminen windowsilla
-1. Siirry powershellillä pelin päähakemistoon
-2. suorita ``` poetry run python .\src\index.py ```
-
-Voit myös muokata task.py tiedoston start-funktion muotoon ```ctx.run("python src/index.py", pty=False)```, jonka jälkeen invoke-komento saattaa toimia.
-Jos peli-ikkuna venyy liian suureksi, kannattaa tarkistaa näytön asetuksista skaalaus
-
-### Muut
-
-- Testejä voi ajaa komennolla ``` poetry run invoke test ```
-- Testikattavuusraportointi ``` poetry run invoke test ``` Löytyy suorituksen jälkeen htmlcov/index.html
-- pylint-tarkistus suoritetaan komennolla ``` poetry run invoke lint ```
+[https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 
 
