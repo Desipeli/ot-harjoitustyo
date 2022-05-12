@@ -22,6 +22,7 @@ class Game:
         # 0 = menu, 1 = game table, 3 = show statistics, 4 = settings
         self.game_stage = 0
         self.screen = pygame.display.set_mode([1366, 768])
+        pygame.display.set_caption("Kasino")
         self.font = pygame.font.SysFont("Corbel", 35)
 
         self.info = info.Info()
