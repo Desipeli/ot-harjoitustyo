@@ -51,4 +51,4 @@ class Button:
         """ Draw background of the button """
 
         pygame.draw.rect(self.screen, self.bg_color, [
-                        self.center[0], self.center[1], self.size[0], self.size[1]])
+            self.center[0], self.center[1], self.size[0], self.size[1]])

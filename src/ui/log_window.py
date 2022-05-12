@@ -6,7 +6,7 @@ class LogWindow:
 
     def __init__(self, screen):
         """ Constructor
-        
+
             Args:
                 screen: Pygame display
         """
@@ -29,7 +29,8 @@ class LogWindow:
         self.__draw_text(text)
 
     def __draw_background(self):
-        pygame.draw.rect(self.screen, (20, 20, 20), [self.left, self.top, self.right, self.bottom])
+        pygame.draw.rect(self.screen, (20, 20, 20), [
+                         self.left, self.top, self.right, self.bottom])
 
     def __draw_text(self, texts):
         """ Draw the last n lines of log. Depends on size of window and font
