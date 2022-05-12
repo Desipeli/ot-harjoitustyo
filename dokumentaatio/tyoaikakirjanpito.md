@@ -8,4 +8,6 @@
 |23.4|9h|Jatkettu yhdistelmillä, saatu tietokone pelaamaan melko järkevästi. Refaktorointia. Peliä voi nyt pelata. Ensimmäinen release. Kokeiltu asentaa windowsille|
 |24.4|0.5h|Korjattu pari bugia|
 |3.5|7h|Docstring, Lisätty loki tietokoneen siirroille, asetukset-näkymä|
-|Yht|41.5h|
+|11.5|6h|Pelituloksen tallentaminen sql-tietokantaan. Toiminnallisuuksien eriyttämistä ja bugien korjailua|
+|12.5|3h|Koodin siistimistä ja dokumentaatiota|
+|Yht|50.5h|
