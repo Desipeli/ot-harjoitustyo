@@ -11,7 +11,7 @@ class Cpl:
 
     def play(self, table, computer_hand, player_collected):
         """ Computer's turn starts
-        
+
             Args:
                 table: table cards
                 computer_hand: computer's hand cards
