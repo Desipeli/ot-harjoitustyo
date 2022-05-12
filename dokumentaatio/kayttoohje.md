@@ -9,7 +9,7 @@
 
 ### Windows
 1. Siirry powershellillä pelin päähakemistoon
-2. suorita ``` poetry run invoke start_windows ```
+2. suorita ``` poetry run invoke startwindows ```
 
 Jos peli-ikkuna venyy liian suureksi, kannattaa tarkistaa näytön asetuksista skaalaus
 
