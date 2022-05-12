@@ -31,7 +31,6 @@ class Match:
         self.points_computer = 0
         self.player_chosen_hand_card = None
         self.player_chosen_table_cards = []
-        self.info_text_computer = ""
         self.info_text_player = ""
         self.player_picked_last = False
         self.sweep_player = 0
@@ -69,8 +68,6 @@ class Match:
                 self.deal_two_cards_to(self.player_hand)
                 if start_of_round:
                     self.deal_two_cards_to(self.table)
-        print(self.computer_hand)
-        # self.computer_turn()
 
     def deal_two_cards_to(self, target):
         target.append(self.deck.pick_top())
@@ -87,7 +84,6 @@ class Match:
         if len(self.player_chosen_table_cards) > 0:  # Player has chosen cards from table
             for c in self.player_chosen_table_cards:
                 if c.v_table > self.player_chosen_hand_card.v_hand:
-                    self.info_text_player = "You can't pick cards of higher value"
                     return False
             # filter most of the cases
             if sum([x.v_table for x in self.player_chosen_table_cards]) % self.player_chosen_hand_card.v_hand == 0:
@@ -110,6 +106,9 @@ class Match:
 
         if self.winner is not None:
             return
+        if len(self.player_hand) == 0 and len(self.computer_hand) == 0:
+            if self.check_if_match_ends():
+                return
         if self.round_ongoing:
             if self.round % 2 == 0 and len(self.computer_hand) == 4:
                 self.change_turn()
@@ -121,6 +120,7 @@ class Match:
                 self.move_selected_cards_to_player()
             else:
                 if len(self.player_chosen_table_cards) > 0:
+                    self.info_text_player = "Can't pick those cards"
                     return
                 self.play_card_to_table()
             self.info_text_player = "Computer's turn"
@@ -136,12 +136,10 @@ class Match:
         self.add_points_to("player", self.player_chosen_hand_card)
         self.player_hand.remove(self.player_chosen_hand_card)
         # table
-        #picked_cards = ""
         for c in self.player_chosen_table_cards:
             self.table.remove(c)
             self.add_points_to("player", c)
             self.player_collected_cards.append(c)
-            #picked_cards += f"{c.v_table} of {c.suit}, "
         self.player_chosen_table_cards = []
         self.info_text_player = "Your turn"
         self.player_chosen_hand_card = None
@@ -158,6 +156,7 @@ class Match:
     def change_turn(self):
         """ This function handles turn changes and round/match endings """
 
+        self.player_chosen_table_cards.clear()
         if len(self.player_hand) == 0 and len(self.computer_hand) == 0 and len(self.deck.see_deck()) > 0:
             self.check_if_match_ends()
             self.deal_cards(False)
@@ -185,6 +184,8 @@ class Match:
     def computer_turn(self):
         """ Computer's turn next. Direct to cpl for logic """
 
+        if not self.round_ongoing:
+            return
         self.turn = False
         begin_timer = time()
         result = self.cpl.play(
@@ -207,14 +208,14 @@ class Match:
 
         self.table.append(card)
         self.computer_hand.remove(card)
-        self.info.game_log_text.append(f"Computer played {card.v_hand} of {card.suit} to the table")
+        self.info.game_log_text.append(
+            f"Computer played {card.v_hand} of {card.suit} to the table")
         self.info.game_log_text.append(f"")
-        self.info_text_computer = f"Computer played {card.v_hand} of {card.suit} to table"
         print("computer played", card.v_hand, card.suit, " to table")
 
     def move_selected_cards_to_computer(self, hand_card, table_cards):
         """ move cards chosen by computer to its pile and add points
-        
+
             Args:
                 hand_card: hand card to be moved
                 table_cards: table cards to be moved
@@ -230,19 +231,11 @@ class Match:
             self.add_points_to("computer", card)
             picked_cards += f"{card.v_table} of {card.suit} ,"
             self.info.game_log_text.append(f"   {card.v_table} of {card.suit}")
-        self.info_text_computer = f"Computer picked [{picked_cards}] with {hand_card.v_hand} of {hand_card.suit}"
-        self.info.game_log_text.append(f"With {hand_card.v_hand} of {hand_card.suit}")
+        self.info.game_log_text.append(
+            f"With {hand_card.v_hand} of {hand_card.suit}")
         self.info.game_log_text.append(f"")
         self.add_points_to("computer", hand_card)
         self.player_picked_last = False
-
-    def print_hands(self):
-        """ Print hand cards to terminal """
-
-        print("player col:", [(c.v_hand, c.suit)
-              for c in self.player_collected_cards])
-        print("computer col:", [(c.v_hand, c.suit)
-              for c in self.computer_collected_cards])
 
     def add_points_to(self, who, card):
         """ Add points to player or computer
@@ -277,10 +270,8 @@ class Match:
                 self.computer_collected_cards.append(c)
                 self.add_points_to("computer", c)
         if self.player_picked_last:
-            self.info_text_computer = f"Player got remaining cards: {picked_cards}"
             self.info.game_log_text.append(f"Player got the remaining cards")
         else:
-            self.info_text_computer = f"Computer got remaining cards: {picked_cards}"
             self.info.game_log_text.append(f"Computer got the remaining cards")
         self.info.game_log_text.append(f"")
         self.table.clear()
@@ -288,28 +279,36 @@ class Match:
     def round_end_points(self):
         """ Calculate and gives points from cards, spades and sweeps """
 
+        if self.winner:
+            return
         if len(self.player_collected_cards) > len(self.computer_collected_cards):
-            self.info.game_log_text.append(f"Player collected more cards: +1 point")
+            self.info.game_log_text.append(
+                f"Player collected more cards: +1 point")
             self.points_player += 1
         elif len(self.player_collected_cards) < len(self.computer_collected_cards):
-            self.info.game_log_text.append(f"Computer got 1 point from collecting more cards")
+            self.info.game_log_text.append(
+                f"Computer got 1 point from collecting more cards")
             self.points_computer += 1
         player_spades = 0
         for c in self.player_collected_cards:
             if c.suit == "spades":
                 player_spades += 1
         if player_spades > 6:
-            self.info.game_log_text.append(f"Player collected more spades: +2 point")
+            self.info.game_log_text.append(
+                f"Player collected more spades: +2 point")
             self.points_player += 2
         else:
             self.points_computer += 2
-            self.info.game_log_text.append(f"Computer got 2 points from collecting more spades")
+            self.info.game_log_text.append(
+                f"Computer got 2 points from collecting more spades")
         self.points_computer += self.sweep_computer
         self.points_player += self.sweep_player
         if self.sweep_computer > 0:
-            self.info.game_log_text.append(f"Computer got {self.sweep_computer} points from sweeps")
+            self.info.game_log_text.append(
+                f"Computer got {self.sweep_computer} points from sweeps")
         elif self.sweep_player > 0:
-            self.info.game_log_text.append(f"Player got {self.sweep_player} points from sweeps")
+            self.info.game_log_text.append(
+                f"Player got {self.sweep_player} points from sweeps")
         self.sweep_computer = 0
         self.sweep_player = 0
         self.player_collected_cards.clear()
@@ -334,22 +333,29 @@ class Match:
     def check_if_match_ends(self):
         """ Checks if player or computer has at least 16 points for win """
         if self.winner:
-            return
+            return True
         player_total = self.points_player + self.sweep_player
         computer_total = self.points_computer + self.sweep_computer
         if max(player_total, computer_total) >= 16 and player_total != computer_total:  # Match ends
             saved_to_db = update_wins(player_total, computer_total)
             if player_total > computer_total:
                 print("Player wins with", player_total, "points")
-                self.info.game_log_text.append(f"Player wins with {player_total}")
+                self.info.game_log_text.append(
+                    f"Player wins with {player_total}")
                 self.winner = "player"
             else:
                 print("Computer wins with", computer_total, "points")
-                self.info.game_log_text.append(f"Computer wins with {computer_total}")
+                self.info.game_log_text.append(
+                    f"Computer wins with {computer_total} points")
                 self.winner = "computer"
             if not saved_to_db:
-                self.info.game_log_text.append("Could not save points to database")
-                self.info.game_log_text.append("Did you run poetry run invoke build?")
+                self.info.game_log_text.append(
+                    "Could not save points to database")
+                self.info.game_log_text.append(
+                    "Did you run poetry run invoke build?")
+            self.round_ongoing = False
+            return True
+        return False
 
     def back_to_main_menu(self):
         self.info.game_stage = 0
