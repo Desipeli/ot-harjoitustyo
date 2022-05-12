@@ -29,7 +29,7 @@ Jos peli-ikkuna venyy liian suureksi, kannattaa tarkistaa näytön asetuksista s
     - Jos yhtäkään pöytäkorttia ei ole valittu, pelataan valittu käsikortti pöytään ja vuoro siirtyy tietokoneelle.
     - Jos pöytäkortteja on valittu, ja ne voidaan nostaa valitulla käsikortilla, saa pelaaja ne omaan pinoonsa ja vuoro siirtyy tietokoneelle.
     - Jos pöytäkortteja ei voi nostaa, tulee pöytäkorttien alle virheilmoitus eikä vuoro vaihdu.
-    - Tietokonnen aloittamalla kierroksella pelaajan on painettava nappia ennen kuin kierros alkaa.
+    - Tietokoneen aloittamalla kierroksella pelaajan on painettava nappia ennen kuin kierros alkaa.
 - Tietokoneen kortit näkyvät ruudun yläreunassa keskellä. Ne ovat oletuksena käännettynä väärin päin, mutta asetuksista voi säätää ne näkyviin.
 
 - Jos pelin aikana palaa päävalikkoon, voi peliä jatkaa painamalla valikosta ``` Continue ``` nappia
@@ -38,6 +38,10 @@ Jos peli-ikkuna venyy liian suureksi, kannattaa tarkistaa näytön asetuksista s
 
 - Päävalikosta pääsee muuttamaan pelin asetuksia painamalla ``` Settings ``` nappia. Toistaiseksi vain tietokoneen korttien piilottaminen/näyttäminen löytyy täältä.
 -  Päävalikosta pääsee myös katsomaan pelitilastoa. ``` Stats ``` nappi ohja näkymään, josta selviää kuinka monta peliä pelaaja on voittanut tietokonetta vastaan.
+
+## Loki-ikkuna
+
+- Ohjelman vasemmassa alakulmassa on musta laatikko, johon tulostuu tekstinä tietokoneen tekemät siirrot. Tämä helpottaa hahmottamaan pelin tapahtumia.
 
 ## Säännöt
 
