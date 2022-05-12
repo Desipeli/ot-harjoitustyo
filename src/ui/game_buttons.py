@@ -18,7 +18,7 @@ class Buttons:
         # Main menu
         b1 = Button(0, self.screen, "Play", (100, 60),
                     (self.screen.get_width()/2, self.screen.get_height()/2))
-        b2 = Button(1, self.screen, "Highscores", (150, 60),
+        b2 = Button(1, self.screen, "Stats", (150, 60),
                     (self.screen.get_width()/2, self.screen.get_height()/2+100))
         b3 = Button(2, self.screen, "Exit", (100, 60),
                     (self.screen.get_width() - 50, self.screen.get_height() - 30))
