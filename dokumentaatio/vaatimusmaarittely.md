@@ -4,20 +4,19 @@
 
 Harjoitustyö on tietokonetta vastaan pelattava korttipeli kasino. 
 
-## Tämän hetken toiminnallisuudet
+## Toiminnallisuudet loppupalautukseen
 
-- Pelaaja voi ottaa kortteja pöydästä ainoastaan sääntöjen sallimissa rajoissa
 - Tietokone osaa arvioida ja nostaa järkevän korttiyhdistelmän pöydästä
-- Pelaaja aloittaa aina ensimmäisen erän, tietokone seuraavan. Aloittaja vaihtuu joka vuoro
-- Peli päättyy kun toisella on vähintään 16 pistettä, käsikortit on pelattu eikä ole tasapelitilannetta.
+- Peli toimii Kasinon sääntöjen mukaisesti
 - Peliä voi pelata ainoastaan hiirellä
 - Pelissä on loki-ikkuna, joka auttaa hahmottamaan tietokonepelaajan siirtoja
-- Päävalikosta pääsee asetukset-näkymään
+- Päävalikosta pääsee asetukset-näkymään, jossa voi säätää, näkyvätkö tietokonepelaajan kortit pelaajalle.
 - Päävalikosta pääsee tilastot-näkymään
 - Pelin voi keskeyttää ja siirtyä päävalikkoon
-- Tieto pelin voitosta/häviöstä tallennetaan tietokantaan
+- Keskeytettyä peliä voi jatkaa päävalikosta painamalla ``` continue ```
+- Tieto pelin voitosta/häviöstä tallennetaan tietokantaan. Näytetään tilastot-näkymässä
 
-## Puuttuvat toiminnallisuudet
+## Paranneltavaa/Kehitettävää
  
  - Tietokone voisi arvioida tarkemmin pöydälle pelattavaa korttia
  - Asetukset-näkymään lisää valintoja
