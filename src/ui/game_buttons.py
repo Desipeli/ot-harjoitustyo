@@ -2,7 +2,17 @@ from ui.button import Button
 
 
 class Buttons:
+    """ This class creates all the buttons for the game """
+
     def __init__(self, screen, info):
+        """ All buttons are listed here and saved to info
+        
+            Args:
+                screen: Pygame display
+                info: info-object for the game
+        """
+
+
         self.info = info
         self.screen = screen
         # Main menu
@@ -11,7 +21,7 @@ class Buttons:
         b2 = Button(1, self.screen, "Highscores", (150, 60),
                     (self.screen.get_width()/2, self.screen.get_height()/2+100))
         b3 = Button(2, self.screen, "Exit", (100, 60),
-                    (self.screen.get_width() -50, self.screen.get_height() - 30))
+                    (self.screen.get_width() - 50, self.screen.get_height() - 30))
         b7 = Button(6, self.screen, "Continue", (130, 60),
                     (self.screen.get_width()/2, self.screen.get_height()/2 - 100))
         b8 = Button(7, self.screen, "Settings", (150, 60),
@@ -21,7 +31,7 @@ class Buttons:
         b4 = Button(3, self.screen, "play to table", (150, 60),
                     (self.screen.get_width()/2, self.screen.get_height() - 60))
         b6 = Button(5, self.screen, "Menu", (100, 60),
-                    (self.screen.get_width() -50, self.screen.get_height() - 30))
+                    (self.screen.get_width() - 50, self.screen.get_height() - 30))
         self.game_buttons = [b4, b6]
         b5 = Button(4, self.screen, "Main menu", (150, 60),
                     (self.screen.get_width()/2, self.screen.get_height()/2 + 100))
@@ -30,7 +40,7 @@ class Buttons:
         b9 = Button(8, self.screen, "hidden cards", (160, 60),
                     (self.screen.get_width()/2, self.screen.get_height()/2))
         b10 = Button(9, self.screen, "Menu", (100, 60),
-                    (self.screen.get_width() -50, self.screen.get_height() - 30))
+                     (self.screen.get_width() - 50, self.screen.get_height() - 30))
         self.settings_buttons = [b9, b10]
         # statistics buttons
         self.stats_buttons = [b10]
