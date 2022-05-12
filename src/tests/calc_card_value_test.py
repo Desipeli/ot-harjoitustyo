@@ -1,5 +1,5 @@
 import unittest
-from calc import Calcs
+from logic.calc import Calcs
 from card import Card
 
 
