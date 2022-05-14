@@ -21,3 +21,4 @@ class Info:
                               "Press play to start a match"]
         self.game_log = None
         self.settings = Settings()
+        self.stats = (0, 0)
