@@ -18,7 +18,7 @@ Harjoitustyö on tietokonetta vastaan pelattava korttipeli kasino.
 
 ## Paranneltavaa/Kehitettävää
  
- - Tietokone voisi arvioida tarkemmin pöydälle pelattavaa korttia
+ - Tietokone voisi arvioida tarkemmin pöydälle pelattavaa korttia, ja korttiyhdistelmien läpikäyminen voisi olla tehokkaampaa.
  - Asetukset-näkymään lisää valintoja
  - UI:n hiomista, ehkä yksinkertainen animaation korttien siirtymisiin
  - Mahdollisuus muuttaa sääntöjä.
