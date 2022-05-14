@@ -35,6 +35,10 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 - [Viikon 6 julkaisu](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/viikko6)
 
+### Loppupalautus
+
+[https://github.com/Desipeli/ot-harjoitustyo/releases/tag/loppupalautus](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/loppupalautus)
+
 ## Asennusohjeet
 
 [https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md](https://github.com/Desipeli/ot-harjoitustyo/blob/master/dokumentaatio/Asennusohjeet.md)
