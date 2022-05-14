@@ -15,6 +15,6 @@
 ## Viikko 7 (loppupalautus)
 
 - Korjattu pelin jäädyttävä bugi
-- Luotu erilliset käyttöohjeet
+- Luotu erilliset käyttöohjeet ja lisää dokumentaatiota
 - Lisätty yksinkertainen tietokanta, johon tallennetaan pelien pisteet
 - Lisätty ``` Stats ``` näkymä, joka näyttää voitetut pelit/kaikki pelit
