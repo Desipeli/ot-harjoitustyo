@@ -37,7 +37,7 @@ Pythonilla toteutettu [kasino-korttipeli](https://fi.wikipedia.org/wiki/Kasino_(
 
 ### Loppupalautus
 
-[https://github.com/Desipeli/ot-harjoitustyo/releases/tag/loppupalautus](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/loppupalautus)
+- [https://github.com/Desipeli/ot-harjoitustyo/releases/tag/loppupalautus](https://github.com/Desipeli/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Asennusohjeet
 
