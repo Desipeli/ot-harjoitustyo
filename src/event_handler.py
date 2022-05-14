@@ -1,5 +1,6 @@
 import sys
 import pygame
+from database_actions import read_wins
 from logic.match import Match
 from logic.deck import Deck
 
@@ -62,6 +63,7 @@ class Events:
                     pygame.quit()
                     sys.exit()
                 elif b.id == 1:
+                    self.info.stats = read_wins()
                     self.info.game_stage = 3
                 elif b.id == 6:
                     self.info.game_stage = 1

@@ -1,6 +1,5 @@
 from ui.match_ended import MatchEnded
 from ui.log_window import LogWindow
-from database_actions import read_wins
 
 
 class Draw:
@@ -43,7 +42,7 @@ class Draw:
             b.draw()
 
     def draw_stats(self):
-        wins, allgames = read_wins()
+        wins, allgames = self.info.stats
         font = self.info.font
         wins_games_text = font.render(
             f"Player won / all games", True, (200, 200, 200))
