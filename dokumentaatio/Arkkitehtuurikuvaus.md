@@ -53,6 +53,8 @@ Tapahtumien käsittely ohjataan ulkopuoliseen Events-luokkaan.
 
 Tapahtumat käsitellään Events-luokassa (event_handler.py). Sille lähetetään Loop-luokasta tieto tapahtumasta ja ohjelman info-oliosta. Tapahtumien käsittelijä selvittää info-olion avulla, mikä pelitila on käynnissä, ja sen mukaan tarkistaa onko esimerkiksi päävalikon nappeja painettu. Jos luokka toteaa, että nappia on painettu, muutetaan jonkin muuttujan arvoa tai kutsutaan jotain ulkopuolista funktiota. Esimerkiksi "Settings"-napin painaminen päävalikossa muuttaa "game_stage"n arvon 4:n.
 
-  ## Pelituloksen tallennus
+  ## Pelituloksen tallennus ja luku
   
-  Kun jompikumpi pelaajista voittaa, tallennetaan pisteet tietokantaan db.sqlite nimiseen tiedostoon. 
+  Sekä luku- että tallennusfunktiot löytyvät moduulista database_actions.py. Lukufunktio hakee palauttaa tuplen (pelaajan voitot, kaikki pelit), ja funktiota kutsutaan tapahtumienkäsittelijässä siirryttäessä stats-näkymään.
+ 
+  Tallennusfunktiota kutsutaan kun jompikumpi pelaajista voittaa. Se lisää Wins-tauluun pelaajan ja tietokoneen pisteet omille sarakkeilleen.
