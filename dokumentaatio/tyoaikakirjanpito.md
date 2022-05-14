@@ -10,4 +10,6 @@
 |3.5|7h|Docstring, Lisätty loki tietokoneen siirroille, asetukset-näkymä|
 |11.5|6h|Pelituloksen tallentaminen sql-tietokantaan. Toiminnallisuuksien eriyttämistä ja bugien korjailua|
 |12.5|3h|Koodin siistimistä ja dokumentaatiota|
-|Yht|50.5h|
+|13.5|1h|Dokumentaatiota ja siistimistä|
+|14.5|1h|Dokumentaatiota ja siistimistä|
+|Yht|52.5h|
